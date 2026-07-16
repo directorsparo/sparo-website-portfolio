@@ -9,7 +9,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const CAT_ORDER = [
   'Law','Finance','Professional Services','Marketing','Recruitment','Real Estate',
   'Coaching & Personal Brands','Health & Wellness','Healthcare','Events',
-  'Tourism, Hospo & Entertainment','Food','Ecommerce','Fashion','Industrial',
+  'Tourism, Hospo & Entertainment','Food','Ecommerce','Framer/Shopify','Fashion','Industrial',
   'Agriculture','Photography','Copywriting','Creative & Design','Education'
 ];
 
@@ -53,7 +53,7 @@ for (const cat of cats) {
 const chips = ['All', ...cats].map((c, i) =>
   `<button class="chip${i === 0 ? ' active' : ''}" data-cat="${esc(c)}" type="button">${esc(c)}</button>`).join('');
 
-const platforms = [...new Set(sites.map(s => s.platform).filter(Boolean))].sort();
+const platforms = [...new Set(sites.flatMap(s => (s.platform || '').split(' + ')).filter(Boolean))].sort();
 const platChips = ['All platforms', ...platforms].map((p, i) =>
   `<button class="chip plat${i === 0 ? ' active' : ''}" data-plat="${esc(p)}" type="button">${esc(p)}</button>`).join('');
 
@@ -164,7 +164,7 @@ const html = `<title>Sparo Studios Website Portfolio</title>
       const inCat = activeCat === 'All' || sec.dataset.cat === activeCat;
       let secVisible = 0;
       sec.querySelectorAll('.card').forEach(card => {
-        const inPlat = activePlat === 'All platforms' || card.dataset.platform === activePlat;
+        const inPlat = activePlat === 'All platforms' || card.dataset.platform.split(' + ').includes(activePlat);
         const hit = inCat && inPlat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
         card.style.display = hit ? '' : 'none';
         if (hit) secVisible++;
