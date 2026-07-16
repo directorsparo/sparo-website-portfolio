@@ -38,6 +38,8 @@
   .search input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
   .search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
   .chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+  .platrow{flex:0 0 auto;padding-left:10px;border-left:1px solid var(--line)}
+  @media (max-width: 720px){ .platrow{border-left:none;padding-left:0} }
   .chip{border:1px solid var(--line);background:var(--chipbg);color:var(--ink);padding:6px 12px;border-radius:999px;font:500 13px/1 system-ui,sans-serif;cursor:pointer}
   .chip:hover{border-color:var(--sub)}
   .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
@@ -76,6 +78,7 @@
   <div class="toolbar-in">
     <div class="search"><input id="q" type="search" placeholder="Search client or domain" aria-label="Search sites"></div>
     <div class="chips" id="chips"><button class="chip active" data-cat="All" type="button">All</button><button class="chip" data-cat="Law" type="button">Law</button><button class="chip" data-cat="Finance" type="button">Finance</button><button class="chip" data-cat="Professional Services" type="button">Professional Services</button><button class="chip" data-cat="Marketing" type="button">Marketing</button><button class="chip" data-cat="Recruitment" type="button">Recruitment</button><button class="chip" data-cat="Real Estate" type="button">Real Estate</button><button class="chip" data-cat="Coaching &amp; Personal Brands" type="button">Coaching &amp; Personal Brands</button><button class="chip" data-cat="Health &amp; Wellness" type="button">Health &amp; Wellness</button><button class="chip" data-cat="Healthcare" type="button">Healthcare</button><button class="chip" data-cat="Events" type="button">Events</button><button class="chip" data-cat="Tourism, Hospo &amp; Entertainment" type="button">Tourism, Hospo &amp; Entertainment</button><button class="chip" data-cat="Food" type="button">Food</button><button class="chip" data-cat="Ecommerce" type="button">Ecommerce</button><button class="chip" data-cat="Fashion" type="button">Fashion</button><button class="chip" data-cat="Industrial" type="button">Industrial</button><button class="chip" data-cat="Agriculture" type="button">Agriculture</button><button class="chip" data-cat="Photography" type="button">Photography</button><button class="chip" data-cat="Copywriting" type="button">Copywriting</button><button class="chip" data-cat="Creative &amp; Design" type="button">Creative &amp; Design</button><button class="chip" data-cat="Education" type="button">Education</button></div>
+    <div class="chips platrow" id="platchips"><button class="chip plat active" data-plat="All platforms" type="button">All platforms</button><button class="chip plat" data-plat="Framer" type="button">Framer</button><button class="chip plat" data-plat="Shopify" type="button">Shopify</button><button class="chip plat" data-plat="WordPress" type="button">WordPress</button></div>
     <span class="shown" id="shown"></span>
   </div>
 </div>
@@ -886,6 +889,7 @@
   const empty = document.getElementById('empty');
   const total = document.querySelectorAll('.card').length;
   let activeCat = 'All';
+  let activePlat = 'All platforms';
 
   function apply(){
     const term = q.value.trim().toLowerCase();
@@ -894,7 +898,8 @@
       const inCat = activeCat === 'All' || sec.dataset.cat === activeCat;
       let secVisible = 0;
       sec.querySelectorAll('.card').forEach(card => {
-        const hit = inCat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
+        const inPlat = activePlat === 'All platforms' || card.dataset.platform === activePlat;
+        const hit = inCat && inPlat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
         card.style.display = hit ? '' : 'none';
         if (hit) secVisible++;
       });
@@ -913,6 +918,15 @@
     apply();
   });
   q.addEventListener('input', apply);
+
+  const platEl = document.getElementById('platchips');
+  platEl.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    platEl.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    b.classList.add('active');
+    activePlat = b.dataset.plat;
+    apply();
+  });
 
   document.querySelectorAll('.copy').forEach(btn => {
     btn.addEventListener('click', e => {
