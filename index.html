@@ -33,9 +33,11 @@
   header.top p{margin:0;color:var(--sub);max-width:62ch}
   .toolbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-top:20px}
   @media (max-width: 720px){ .toolbar{position:static;backdrop-filter:none;background:var(--paper)} }
-  .toolbar-in{max-width:1480px;margin:0 auto;padding:14px 32px;display:flex;flex-direction:column;gap:10px}
-  .trow{display:flex;align-items:flex-start;gap:12px}
-  .trow-top{align-items:center}
+  .toolbar-in{max-width:1480px;margin:0 auto;padding:14px 32px;display:flex;flex-direction:column}
+  .trow{display:flex;align-items:flex-start;gap:12px;padding:12px 0}
+  .trow + .trow{border-top:1px solid var(--line)}
+  .trow-top{align-items:center;padding-top:2px}
+  .trow:last-child{padding-bottom:4px}
   .lbl{flex:0 0 68px;font:600 11px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding-top:9px}
   .search{flex:0 1 320px;min-width:200px;position:relative}
   .search input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
