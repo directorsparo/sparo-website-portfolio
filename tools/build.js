@@ -18,7 +18,7 @@ const domain = u => u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(
 const CAT_ORDER = [
   'Ecommerce','Professional Services','Health & Wellness','Finance','Law',
   'Tourism, Hospo & Entertainment','Coaching & Personal Brands','Marketing','Photography',
-  'Real Estate','Healthcare','Education','Recruitment','Creative & Design','Food','Events',
+  'Real Estate','Healthcare','Education','Creative & Design','Food','Events',
   'Industrial','Agriculture'
 ];
 
