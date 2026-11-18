@@ -301,7 +301,16 @@
   "cat": "Ecommerce",
   "name": "Moira Hughes Couture",
   "url": "https://moirahughes.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "sortAs": "2026-07"
+ },
+ {
+  "cat": "Ecommerce",
+  "name": "Desden",
+  "url": "https://desden.com/",
+  "platform": "Shopify",
+  "launched": "2026-07",
+  "sortAs": ""
  },
  {
   "cat": "Ecommerce",
@@ -383,13 +392,6 @@
   "name": "Tilco",
   "url": "https://tilco.com.au/",
   "platform": "Framer",
-  "launched": "2026-07"
- },
- {
-  "cat": "Ecommerce",
-  "name": "Desden",
-  "url": "https://desden.com/",
-  "platform": "Shopify",
   "launched": "2026-07"
  },
  {

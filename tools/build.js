@@ -67,8 +67,10 @@ function card(site) {
 
 let sections = '';
 for (const cat of cats) {
-  // newest launch first; undated sites keep their sites.json order after the dated ones
-  const list = [...byCat[cat]].sort((a, b) => (b.launched || '').localeCompare(a.launched || ''));
+  // newest launch first; undated sites keep their sites.json order after the dated ones.
+  // A site's "sortAs" (same YYYY-MM format) overrides its launch date for placement only.
+  const key = s => s.sortAs ?? s.launched ?? '';
+  const list = [...byCat[cat]].sort((a, b) => key(b).localeCompare(key(a)));
   sections += `
     <section class="cat" data-cat="${esc(cat)}">
       <h2>${esc(cat)} <span class="count">${list.length}</span></h2>
