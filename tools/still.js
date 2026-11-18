@@ -7,7 +7,9 @@ const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, 
 
 const args = process.argv.slice(2);
 const viewportOnly = args.includes('--viewport');
-const names = args.filter(a => a !== '--viewport');
+// --tall loads the page in a 2400px-high window so a full-length capture needs no relayout
+const tall = args.includes('--tall');
+const names = args.filter(a => !a.startsWith('--'));
 
 const HIDE = `[class*="provesource" i],[id*="provesource" i],[class*="ps-notification" i],
   [class*="cookie" i],[id*="cookie" i],[aria-modal="true"]{display:none !important}`;
@@ -17,7 +19,7 @@ const HIDE = `[class*="provesource" i],[id*="provesource" i],[class*="ps-notific
   for (const name of names) {
     const site = sites.find(x => x.name === name);
     if (!site) { console.log('Not in sites.json:', name); continue; }
-    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    const page = await browser.newPage({ viewport: { width: 1440, height: tall ? 2400 : 900 } });
     await page.goto(site.url, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {});
     await page.waitForTimeout(12000);
     for (const el of await page.$$('button:visible, [role=button]:visible')) {
@@ -34,7 +36,7 @@ const HIDE = `[class*="provesource" i],[id*="provesource" i],[class*="ps-notific
     }).catch(() => {});
     await page.waitForTimeout(1500);
     const h = viewportOnly ? 900 : Math.min(2400, await page.evaluate(() => document.documentElement.scrollHeight));
-    await page.screenshot({ path: path.join(__dirname, 'shots', slug(name) + '.png'), fullPage: !viewportOnly,
+    await page.screenshot({ path: path.join(__dirname, 'shots', slug(name) + '.png'), fullPage: !viewportOnly && !tall,
       clip: { x: 0, y: 0, width: 1440, height: Math.max(900, h) } });
     console.log('OK  ' + name);
     await page.close();
