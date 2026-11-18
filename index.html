@@ -31,23 +31,7 @@
   .wrap{max-width:1320px;margin:0 auto;padding:0 40px}
   header.top{padding:56px 0 8px}
   header.top h1{font-size:34px;font-weight:650;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px;text-wrap:balance}
-  header.top p{margin:0;color:var(--sub);max-width:60ch;font-size:16px}
-  header.top .total{margin-top:14px;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
-
-  .toolbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
-  .trow{display:flex;align-items:flex-start;gap:14px;padding:12px 0}
-  .trow + .trow{border-top:1px solid var(--line)}
-  .trow-top{align-items:center}
-  .lbl{flex:0 0 72px;font:600 11px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding-top:9px}
-  .search{flex:0 1 340px;min-width:200px}
-  .search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
-  .search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
-  .shown{margin-left:auto;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}
-  .chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
-  .chip{border:1px solid var(--line);background:var(--chipbg);color:var(--ink);padding:6px 12px;border-radius:999px;font:500 13px/1 system-ui,sans-serif;cursor:pointer}
-  .chip:hover{border-color:var(--sub)}
-  .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-  .chip:focus-visible,.copy:focus-visible,.frame:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .copy:focus-visible,.frame:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
   main{padding:8px 0 80px}
   .cat{margin-top:56px}
@@ -76,7 +60,6 @@
   .copy{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--accent);font:500 13px/1 system-ui,sans-serif;cursor:pointer;padding:8px 11px;border-radius:7px;margin-top:2px}
   .copy:hover{border-color:var(--accent)}
 
-  .empty{display:none;color:var(--sub);text-align:center;padding:80px 0}
   footer{padding:0 0 56px;color:var(--sub);font-size:12.5px}
 
   @media (max-width: 860px){
@@ -85,10 +68,6 @@
     header.top h1{font-size:28px}
     .grid{grid-template-columns:1fr;gap:36px}
     .cat{margin-top:44px}
-    .trow{flex-wrap:wrap}
-    .lbl{flex-basis:100%;padding-top:0}
-    .search{flex:1 1 100%}
-    .shown{margin-left:0}
   }
   @media (prefers-reduced-motion: reduce){
     .frame,.shot img{transition:none}
@@ -101,24 +80,7 @@
 <div class="wrap">
   <header class="top">
     <h1>Sparo Studios Website Portfolio</h1>
-    <p>Live client websites, grouped by industry. Hover a site to scroll through its homepage, click to open it in a new tab, or copy the link to send to a prospect.</p>
-    <div class="total">72 live websites</div>
   </header>
-
-  <div class="toolbar">
-    <div class="trow trow-top">
-      <div class="search"><input id="q" type="search" placeholder="Search client or domain" aria-label="Search sites"></div>
-      <span class="shown" id="shown"></span>
-    </div>
-    <div class="trow">
-      <span class="lbl">Industry</span>
-      <div class="chips" id="chips"><button class="chip active" data-cat="All" type="button">All</button><button class="chip" data-cat="Law" type="button">Law</button><button class="chip" data-cat="Finance" type="button">Finance</button><button class="chip" data-cat="Professional Services" type="button">Professional Services</button><button class="chip" data-cat="Marketing" type="button">Marketing</button><button class="chip" data-cat="Recruitment" type="button">Recruitment</button><button class="chip" data-cat="Real Estate" type="button">Real Estate</button><button class="chip" data-cat="Coaching &amp; Personal Brands" type="button">Coaching &amp; Personal Brands</button><button class="chip" data-cat="Health &amp; Wellness" type="button">Health &amp; Wellness</button><button class="chip" data-cat="Healthcare" type="button">Healthcare</button><button class="chip" data-cat="Events" type="button">Events</button><button class="chip" data-cat="Tourism, Hospo &amp; Entertainment" type="button">Tourism, Hospo &amp; Entertainment</button><button class="chip" data-cat="Food" type="button">Food</button><button class="chip" data-cat="Ecommerce" type="button">Ecommerce</button><button class="chip" data-cat="Framer/Shopify" type="button">Framer/Shopify</button><button class="chip" data-cat="Fashion" type="button">Fashion</button><button class="chip" data-cat="Industrial" type="button">Industrial</button><button class="chip" data-cat="Agriculture" type="button">Agriculture</button><button class="chip" data-cat="Photography" type="button">Photography</button><button class="chip" data-cat="Copywriting" type="button">Copywriting</button><button class="chip" data-cat="Creative &amp; Design" type="button">Creative &amp; Design</button><button class="chip" data-cat="Education" type="button">Education</button></div>
-    </div>
-    <div class="trow">
-      <span class="lbl">Platform</span>
-      <div class="chips" id="platchips"><button class="chip active" data-plat="All platforms" type="button">All platforms</button><button class="chip" data-plat="Framer" type="button">Framer</button><button class="chip" data-plat="Shopify" type="button">Shopify</button><button class="chip" data-plat="WordPress" type="button">WordPress</button></div>
-    </div>
-  </div>
 
   <main>
     
@@ -128,7 +90,7 @@
       <article class="card" data-name="australian law advocates" data-domain="australianlawadvocates.com.au" data-platform="WordPress">
         <a class="frame" href="https://australianlawadvocates.com.au/" target="_blank" rel="noopener" aria-label="Open Australian Law Advocates in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">australianlawadvocates.com.au</span></span>
-          <span class="shot"><img src="images/australian-law-advocates.jpg" width="720" height="1200" alt="Australian Law Advocates homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/australian-law-advocates.jpg" width="1100" height="1833" alt="Australian Law Advocates homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -142,7 +104,7 @@
       <article class="card" data-name="foundd legal" data-domain="founddlegal.com" data-platform="Shopify">
         <a class="frame" href="https://founddlegal.com/" target="_blank" rel="noopener" aria-label="Open Foundd Legal in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">founddlegal.com</span></span>
-          <span class="shot"><img src="images/foundd-legal.jpg" width="720" height="1200" alt="Foundd Legal homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/foundd-legal.jpg" width="1100" height="687" alt="Foundd Legal homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -156,7 +118,7 @@
       <article class="card" data-name="simpson quinn lawyers" data-domain="simpsonquinn.com.au" data-platform="WordPress">
         <a class="frame" href="https://simpsonquinn.com.au/" target="_blank" rel="noopener" aria-label="Open Simpson Quinn Lawyers in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">simpsonquinn.com.au</span></span>
-          <span class="shot"><img src="images/simpson-quinn-lawyers.jpg" width="720" height="1200" alt="Simpson Quinn Lawyers homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/simpson-quinn-lawyers.jpg" width="1100" height="1833" alt="Simpson Quinn Lawyers homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -170,7 +132,7 @@
       <article class="card" data-name="locke family law" data-domain="lockefamilylaw.com.au" data-platform="Framer">
         <a class="frame" href="https://lockefamilylaw.com.au/" target="_blank" rel="noopener" aria-label="Open Locke Family Law in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">lockefamilylaw.com.au</span></span>
-          <span class="shot"><img src="images/locke-family-law.jpg" width="720" height="1200" alt="Locke Family Law homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/locke-family-law.jpg" width="1100" height="1833" alt="Locke Family Law homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -186,24 +148,10 @@
     <section class="cat" data-cat="Finance">
       <h2>Finance <span class="count">5</span></h2>
       <div class="grid">
-      <article class="card" data-name="sjf bookkeeping" data-domain="sjfbookkeeping.com.au" data-platform="Framer">
-        <a class="frame" href="https://sjfbookkeeping.com.au/" target="_blank" rel="noopener" aria-label="Open SJF Bookkeeping in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">sjfbookkeeping.com.au</span></span>
-          <span class="shot"><img src="images/sjf-bookkeeping.jpg" width="720" height="1200" alt="SJF Bookkeeping homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://sjfbookkeeping.com.au/" target="_blank" rel="noopener" tabindex="-1">SJF Bookkeeping</a>
-            <span class="sub">sjfbookkeeping.com.au <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://sjfbookkeeping.com.au/" aria-label="Copy link to SJF Bookkeeping">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="the integrated cfo" data-domain="theintegratedcfo.com.au" data-platform="WordPress">
         <a class="frame" href="https://theintegratedcfo.com.au/" target="_blank" rel="noopener" aria-label="Open The Integrated CFO in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">theintegratedcfo.com.au</span></span>
-          <span class="shot"><img src="images/the-integrated-cfo.jpg" width="720" height="1200" alt="The Integrated CFO homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/the-integrated-cfo.jpg" width="1100" height="1833" alt="The Integrated CFO homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -217,7 +165,7 @@
       <article class="card" data-name="ics business &amp; finance" data-domain="icsbusinessfinance.com.au" data-platform="WordPress">
         <a class="frame" href="https://www.icsbusinessfinance.com.au/" target="_blank" rel="noopener" aria-label="Open ICS Business &amp; Finance in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">icsbusinessfinance.com.au</span></span>
-          <span class="shot"><img src="images/ics-business-finance.jpg" width="720" height="1200" alt="ICS Business &amp; Finance homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/ics-business-finance.jpg" width="1100" height="1833" alt="ICS Business &amp; Finance homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -228,10 +176,24 @@
           <button class="copy" type="button" data-url="https://www.icsbusinessfinance.com.au/" aria-label="Copy link to ICS Business &amp; Finance">Copy link</button>
         </div>
       </article>
+      <article class="card" data-name="sjf bookkeeping" data-domain="sjfbookkeeping.com.au" data-platform="Framer">
+        <a class="frame" href="https://sjfbookkeeping.com.au/" target="_blank" rel="noopener" aria-label="Open SJF Bookkeeping in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">sjfbookkeeping.com.au</span></span>
+          <span class="shot"><img src="images/sjf-bookkeeping.jpg" width="1100" height="1833" alt="SJF Bookkeeping homepage" loading="lazy" decoding="async"></span>
+          
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="https://sjfbookkeeping.com.au/" target="_blank" rel="noopener" tabindex="-1">SJF Bookkeeping</a>
+            <span class="sub">sjfbookkeeping.com.au <span class="dot">·</span> Framer</span>
+          </div>
+          <button class="copy" type="button" data-url="https://sjfbookkeeping.com.au/" aria-label="Copy link to SJF Bookkeeping">Copy link</button>
+        </div>
+      </article>
       <article class="card" data-name="baron financials" data-domain="baronfinance.com.au" data-platform="Framer">
         <a class="frame" href="https://baronfinance.com.au/" target="_blank" rel="noopener" aria-label="Open Baron Financials in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">baronfinance.com.au</span></span>
-          <span class="shot"><img src="images/baron-financials.jpg" width="720" height="1200" alt="Baron Financials homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/baron-financials.jpg" width="1100" height="1833" alt="Baron Financials homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -245,7 +207,7 @@
       <article class="card" data-name="fastr finance" data-domain="fastrfinance.com.au" data-platform="WordPress">
         <a class="frame" href="https://fastrfinance.com.au/" target="_blank" rel="noopener" aria-label="Open Fastr Finance in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">fastrfinance.com.au</span></span>
-          <span class="shot"><img src="images/fastr-finance.jpg" width="720" height="1200" alt="Fastr Finance homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/fastr-finance.jpg" width="1100" height="1833" alt="Fastr Finance homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -259,12 +221,12 @@
       </div>
     </section>
     <section class="cat" data-cat="Professional Services">
-      <h2>Professional Services <span class="count">8</span></h2>
+      <h2>Professional Services <span class="count">7</span></h2>
       <div class="grid">
       <article class="card" data-name="nganya" data-domain="nganya.com.au" data-platform="WordPress">
         <a class="frame" href="https://nganya.com.au/" target="_blank" rel="noopener" aria-label="Open Nganya in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">nganya.com.au</span></span>
-          <span class="shot"><img src="images/nganya.jpg" width="720" height="1200" alt="Nganya homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/nganya.jpg" width="1100" height="1833" alt="Nganya homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -278,7 +240,7 @@
       <article class="card" data-name="lee longmire co" data-domain="leelongmireco.au" data-platform="Framer">
         <a class="frame" href="https://leelongmireco.au/" target="_blank" rel="noopener" aria-label="Open Lee Longmire Co in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">leelongmireco.au</span></span>
-          <span class="shot"><img src="images/lee-longmire-co.jpg" width="720" height="1200" alt="Lee Longmire Co homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/lee-longmire-co.jpg" width="1100" height="1833" alt="Lee Longmire Co homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -292,7 +254,7 @@
       <article class="card" data-name="zenith journey" data-domain="zenithjourney.com" data-platform="WordPress">
         <a class="frame" href="https://www.zenithjourney.com/" target="_blank" rel="noopener" aria-label="Open Zenith Journey in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">zenithjourney.com</span></span>
-          <span class="shot"><img src="images/zenith-journey.jpg" width="720" height="1200" alt="Zenith Journey homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/zenith-journey.jpg" width="1100" height="1833" alt="Zenith Journey homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -306,7 +268,7 @@
       <article class="card" data-name="aurelia communications" data-domain="aureliacommunications.com.au" data-platform="Framer">
         <a class="frame" href="https://aureliacommunications.com.au/" target="_blank" rel="noopener" aria-label="Open Aurelia Communications in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">aureliacommunications.com.au</span></span>
-          <span class="shot"><img src="images/aurelia-communications.jpg" width="720" height="1200" alt="Aurelia Communications homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/aurelia-communications.jpg" width="1100" height="1833" alt="Aurelia Communications homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -320,7 +282,7 @@
       <article class="card" data-name="slingshot solutions" data-domain="slingshot-solutions.com.au" data-platform="WordPress">
         <a class="frame" href="https://slingshot-solutions.com.au/" target="_blank" rel="noopener" aria-label="Open Slingshot Solutions in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">slingshot-solutions.com.au</span></span>
-          <span class="shot"><img src="images/slingshot-solutions.jpg" width="720" height="1200" alt="Slingshot Solutions homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/slingshot-solutions.jpg" width="1100" height="1833" alt="Slingshot Solutions homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -334,7 +296,7 @@
       <article class="card" data-name="brightworks" data-domain="brightworks.net.au" data-platform="Framer">
         <a class="frame" href="https://brightworks.net.au/" target="_blank" rel="noopener" aria-label="Open Brightworks in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">brightworks.net.au</span></span>
-          <span class="shot"><img src="images/brightworks.jpg" width="720" height="1200" alt="Brightworks homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/brightworks.jpg" width="1100" height="1833" alt="Brightworks homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -348,7 +310,7 @@
       <article class="card" data-name="restr" data-domain="restr.com.au" data-platform="Framer">
         <a class="frame" href="https://restr.com.au/" target="_blank" rel="noopener" aria-label="Open Restr in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">restr.com.au</span></span>
-          <span class="shot"><img src="images/restr.jpg" width="720" height="1200" alt="Restr homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/restr.jpg" width="1100" height="1833" alt="Restr homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -359,20 +321,6 @@
           <button class="copy" type="button" data-url="https://restr.com.au/" aria-label="Copy link to Restr">Copy link</button>
         </div>
       </article>
-      <article class="card" data-name="culture plus consulting" data-domain="cultureplusconsulting.com" data-platform="Framer">
-        <a class="frame" href="https://cultureplusconsulting.com/" target="_blank" rel="noopener" aria-label="Open Culture Plus Consulting in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">cultureplusconsulting.com</span></span>
-          <span class="shot"><img src="images/culture-plus-consulting.jpg" width="720" height="1200" alt="Culture Plus Consulting homepage" loading="lazy" decoding="async"></span>
-          
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://cultureplusconsulting.com/" target="_blank" rel="noopener" tabindex="-1">Culture Plus Consulting</a>
-            <span class="sub">cultureplusconsulting.com <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://cultureplusconsulting.com/" aria-label="Copy link to Culture Plus Consulting">Copy link</button>
-        </div>
-      </article>
       </div>
     </section>
     <section class="cat" data-cat="Marketing">
@@ -381,7 +329,7 @@
       <article class="card" data-name="gordon digital" data-domain="gordondigital.com.au" data-platform="WordPress">
         <a class="frame" href="https://gordondigital.com.au/" target="_blank" rel="noopener" aria-label="Open Gordon Digital in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">gordondigital.com.au</span></span>
-          <span class="shot"><img src="images/gordon-digital.jpg" width="720" height="1200" alt="Gordon Digital homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/gordon-digital.jpg" width="1100" height="1833" alt="Gordon Digital homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -395,7 +343,7 @@
       <article class="card" data-name="seasoned digital" data-domain="seasoneddigital.com.au" data-platform="WordPress">
         <a class="frame" href="https://seasoneddigital.com.au/" target="_blank" rel="noopener" aria-label="Open Seasoned Digital in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">seasoneddigital.com.au</span></span>
-          <span class="shot"><img src="images/seasoned-digital.jpg" width="720" height="1200" alt="Seasoned Digital homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/seasoned-digital.jpg" width="1100" height="1833" alt="Seasoned Digital homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -406,24 +354,10 @@
           <button class="copy" type="button" data-url="https://seasoneddigital.com.au/" aria-label="Copy link to Seasoned Digital">Copy link</button>
         </div>
       </article>
-      <article class="card" data-name="thea media" data-domain="theamedia.com.au" data-platform="WordPress">
-        <a class="frame" href="https://theamedia.com.au/" target="_blank" rel="noopener" aria-label="Open Thea Media in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">theamedia.com.au</span></span>
-          <span class="shot"><img src="images/thea-media.jpg" width="720" height="1200" alt="Thea Media homepage" loading="lazy" decoding="async"></span>
-          
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://theamedia.com.au/" target="_blank" rel="noopener" tabindex="-1">Thea Media</a>
-            <span class="sub">theamedia.com.au <span class="dot">·</span> WordPress</span>
-          </div>
-          <button class="copy" type="button" data-url="https://theamedia.com.au/" aria-label="Copy link to Thea Media">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="meaningful agency" data-domain="meaningfulagency.com.au" data-platform="Framer">
         <a class="frame" href="https://www.meaningfulagency.com.au/" target="_blank" rel="noopener" aria-label="Open Meaningful Agency in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">meaningfulagency.com.au</span></span>
-          <span class="shot"><img src="images/meaningful-agency.jpg" width="720" height="1200" alt="Meaningful Agency homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/meaningful-agency.jpg" width="1100" height="1833" alt="Meaningful Agency homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -437,7 +371,7 @@
       <article class="card" data-name="bright red marketing" data-domain="brightredmarketing.com.au" data-platform="Framer">
         <a class="frame" href="https://brightredmarketing.com.au/" target="_blank" rel="noopener" aria-label="Open Bright Red Marketing in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">brightredmarketing.com.au</span></span>
-          <span class="shot"><img src="images/bright-red-marketing.jpg" width="720" height="1200" alt="Bright Red Marketing homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/bright-red-marketing.jpg" width="1100" height="1833" alt="Bright Red Marketing homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -448,29 +382,29 @@
           <button class="copy" type="button" data-url="https://brightredmarketing.com.au/" aria-label="Copy link to Bright Red Marketing">Copy link</button>
         </div>
       </article>
+      <article class="card" data-name="million billion media" data-domain="millionbillionmedia.com" data-platform="WordPress">
+        <a class="frame" href="https://millionbillionmedia.com/" target="_blank" rel="noopener" aria-label="Open Million Billion Media in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">millionbillionmedia.com</span></span>
+          <span class="shot"><img src="images/million-billion-media.jpg" width="1100" height="1833" alt="Million Billion Media homepage" loading="lazy" decoding="async"></span>
+          
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="https://millionbillionmedia.com/" target="_blank" rel="noopener" tabindex="-1">Million Billion Media</a>
+            <span class="sub">millionbillionmedia.com <span class="dot">·</span> WordPress</span>
+          </div>
+          <button class="copy" type="button" data-url="https://millionbillionmedia.com/" aria-label="Copy link to Million Billion Media">Copy link</button>
+        </div>
+      </article>
       </div>
     </section>
     <section class="cat" data-cat="Recruitment">
       <h2>Recruitment <span class="count">2</span></h2>
       <div class="grid">
-      <article class="card" data-name="social friends" data-domain="socialfriends.framer.website" data-platform="Framer">
-        <a class="frame" href="https://socialfriends.framer.website/" target="_blank" rel="noopener" aria-label="Open Social Friends in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">socialfriends.framer.website</span></span>
-          <span class="shot"><img src="images/social-friends.jpg" width="720" height="1200" alt="Social Friends homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://socialfriends.framer.website/" target="_blank" rel="noopener" tabindex="-1">Social Friends</a>
-            <span class="sub">socialfriends.framer.website <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://socialfriends.framer.website/" aria-label="Copy link to Social Friends">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="agentsync" data-domain="agentsync.com.au" data-platform="Framer">
         <a class="frame" href="https://agentsync.com.au/" target="_blank" rel="noopener" aria-label="Open AgentSync in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">agentsync.com.au</span></span>
-          <span class="shot"><img src="images/agentsync.jpg" width="720" height="1200" alt="AgentSync homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/agentsync.jpg" width="1100" height="1833" alt="AgentSync homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -481,6 +415,20 @@
           <button class="copy" type="button" data-url="https://agentsync.com.au/" aria-label="Copy link to AgentSync">Copy link</button>
         </div>
       </article>
+      <article class="card" data-name="social friends" data-domain="socialfriends.framer.website" data-platform="Framer">
+        <a class="frame" href="https://socialfriends.framer.website/" target="_blank" rel="noopener" aria-label="Open Social Friends in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">socialfriends.framer.website</span></span>
+          <span class="shot"><img src="images/social-friends.jpg" width="1100" height="1833" alt="Social Friends homepage" loading="lazy" decoding="async"></span>
+          
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="https://socialfriends.framer.website/" target="_blank" rel="noopener" tabindex="-1">Social Friends</a>
+            <span class="sub">socialfriends.framer.website <span class="dot">·</span> Framer</span>
+          </div>
+          <button class="copy" type="button" data-url="https://socialfriends.framer.website/" aria-label="Copy link to Social Friends">Copy link</button>
+        </div>
+      </article>
       </div>
     </section>
     <section class="cat" data-cat="Real Estate">
@@ -489,7 +437,7 @@
       <article class="card" data-name="parata property" data-domain="parataproperty.com" data-platform="WordPress">
         <a class="frame" href="https://parataproperty.com/" target="_blank" rel="noopener" aria-label="Open Parata Property in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">parataproperty.com</span></span>
-          <span class="shot"><img src="images/parata-property.jpg" width="720" height="1200" alt="Parata Property homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/parata-property.jpg" width="1100" height="1833" alt="Parata Property homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -503,7 +451,7 @@
       <article class="card" data-name="sidekick" data-domain="sidekick.net.au" data-platform="WordPress">
         <a class="frame" href="https://sidekick.net.au/" target="_blank" rel="noopener" aria-label="Open Sidekick in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">sidekick.net.au</span></span>
-          <span class="shot"><img src="images/sidekick.jpg" width="720" height="1200" alt="Sidekick homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/sidekick.jpg" width="1100" height="1833" alt="Sidekick homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -514,29 +462,29 @@
           <button class="copy" type="button" data-url="https://sidekick.net.au/" aria-label="Copy link to Sidekick">Copy link</button>
         </div>
       </article>
-      <article class="card" data-name="dowling property" data-domain="dowlingproperty.com.au" data-platform="WordPress">
-        <a class="frame" href="https://www.dowlingproperty.com.au/" target="_blank" rel="noopener" aria-label="Open Dowling Property in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">dowlingproperty.com.au</span></span>
-          <span class="shot"><img src="images/dowling-property.jpg" width="804" height="1200" alt="Dowling Property homepage" loading="lazy" decoding="async"></span>
+      <article class="card" data-name="dowling property" data-domain="dowlingterrace.com.au" data-platform="WordPress">
+        <a class="frame" href="https://dowlingterrace.com.au/" target="_blank" rel="noopener" aria-label="Open Dowling Property in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">dowlingterrace.com.au</span></span>
+          <span class="shot"><img src="images/dowling-property.jpg" width="1100" height="1833" alt="Dowling Property homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
           <div class="names">
-            <a class="client" href="https://www.dowlingproperty.com.au/" target="_blank" rel="noopener" tabindex="-1">Dowling Property</a>
-            <span class="sub">dowlingproperty.com.au <span class="dot">·</span> WordPress</span>
+            <a class="client" href="https://dowlingterrace.com.au/" target="_blank" rel="noopener" tabindex="-1">Dowling Property</a>
+            <span class="sub">dowlingterrace.com.au <span class="dot">·</span> WordPress</span>
           </div>
-          <button class="copy" type="button" data-url="https://www.dowlingproperty.com.au/" aria-label="Copy link to Dowling Property">Copy link</button>
+          <button class="copy" type="button" data-url="https://dowlingterrace.com.au/" aria-label="Copy link to Dowling Property">Copy link</button>
         </div>
       </article>
       </div>
     </section>
     <section class="cat" data-cat="Coaching &amp; Personal Brands">
-      <h2>Coaching &amp; Personal Brands <span class="count">7</span></h2>
+      <h2>Coaching &amp; Personal Brands <span class="count">6</span></h2>
       <div class="grid">
       <article class="card" data-name="launch queen" data-domain="launchqueen.com.au" data-platform="WordPress">
         <a class="frame" href="https://www.launchqueen.com.au/" target="_blank" rel="noopener" aria-label="Open Launch Queen in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">launchqueen.com.au</span></span>
-          <span class="shot"><img src="images/launch-queen.jpg" width="720" height="1200" alt="Launch Queen homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/launch-queen.jpg" width="1100" height="1833" alt="Launch Queen homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -550,7 +498,7 @@
       <article class="card" data-name="breanna may" data-domain="breannamay.com" data-platform="WordPress">
         <a class="frame" href="https://www.breannamay.com/" target="_blank" rel="noopener" aria-label="Open Breanna May in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">breannamay.com</span></span>
-          <span class="shot"><img src="images/breanna-may.jpg" width="720" height="1200" alt="Breanna May homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/breanna-may.jpg" width="1100" height="1833" alt="Breanna May homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -564,7 +512,7 @@
       <article class="card" data-name="jess spendlove" data-domain="jessicaspendlove.com" data-platform="WordPress">
         <a class="frame" href="https://jessicaspendlove.com/" target="_blank" rel="noopener" aria-label="Open Jess Spendlove in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">jessicaspendlove.com</span></span>
-          <span class="shot"><img src="images/jess-spendlove.jpg" width="720" height="1200" alt="Jess Spendlove homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/jess-spendlove.jpg" width="1100" height="1833" alt="Jess Spendlove homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -578,7 +526,7 @@
       <article class="card" data-name="dr hayley quinn" data-domain="drhayleydquinn.com" data-platform="WordPress">
         <a class="frame" href="https://drhayleydquinn.com/" target="_blank" rel="noopener" aria-label="Open Dr Hayley Quinn in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">drhayleydquinn.com</span></span>
-          <span class="shot"><img src="images/dr-hayley-quinn.jpg" width="720" height="1200" alt="Dr Hayley Quinn homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/dr-hayley-quinn.jpg" width="1100" height="1833" alt="Dr Hayley Quinn homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -592,7 +540,7 @@
       <article class="card" data-name="shunanda" data-domain="shunanda.co" data-platform="Framer">
         <a class="frame" href="https://shunanda.co/" target="_blank" rel="noopener" aria-label="Open Shunanda in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">shunanda.co</span></span>
-          <span class="shot"><img src="images/shunanda.jpg" width="720" height="1200" alt="Shunanda homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/shunanda.jpg" width="1100" height="1833" alt="Shunanda homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -606,7 +554,7 @@
       <article class="card" data-name="sarah marshall medium" data-domain="sarahmarshallmedium.com" data-platform="Framer">
         <a class="frame" href="https://sarahmarshallmedium.com/" target="_blank" rel="noopener" aria-label="Open Sarah Marshall Medium in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">sarahmarshallmedium.com</span></span>
-          <span class="shot"><img src="images/sarah-marshall-medium.jpg" width="720" height="1200" alt="Sarah Marshall Medium homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/sarah-marshall-medium.jpg" width="1100" height="1833" alt="Sarah Marshall Medium homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -617,43 +565,15 @@
           <button class="copy" type="button" data-url="https://sarahmarshallmedium.com/" aria-label="Copy link to Sarah Marshall Medium">Copy link</button>
         </div>
       </article>
-      <article class="card" data-name="rebecca antonucci" data-domain="rebeccaantonucci.com" data-platform="Framer">
-        <a class="frame" href="https://rebeccaantonucci.com/" target="_blank" rel="noopener" aria-label="Open Rebecca Antonucci in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">rebeccaantonucci.com</span></span>
-          <span class="shot"><img src="images/rebecca-antonucci.jpg" width="1092" height="1200" alt="Rebecca Antonucci homepage" loading="lazy" decoding="async"></span>
-          
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://rebeccaantonucci.com/" target="_blank" rel="noopener" tabindex="-1">Rebecca Antonucci</a>
-            <span class="sub">rebeccaantonucci.com <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://rebeccaantonucci.com/" aria-label="Copy link to Rebecca Antonucci">Copy link</button>
-        </div>
-      </article>
       </div>
     </section>
     <section class="cat" data-cat="Health &amp; Wellness">
       <h2>Health &amp; Wellness <span class="count">5</span></h2>
       <div class="grid">
-      <article class="card" data-name="aspire beacon co" data-domain="aspirebeacon.framer.website" data-platform="Framer">
-        <a class="frame" href="https://aspirebeacon.framer.website/" target="_blank" rel="noopener" aria-label="Open Aspire Beacon Co in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">aspirebeacon.framer.website</span></span>
-          <span class="shot"><img src="images/aspire-beacon-co.jpg" width="720" height="1200" alt="Aspire Beacon Co homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://aspirebeacon.framer.website/" target="_blank" rel="noopener" tabindex="-1">Aspire Beacon Co</a>
-            <span class="sub">aspirebeacon.framer.website <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://aspirebeacon.framer.website/" aria-label="Copy link to Aspire Beacon Co">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="amy savage nutrition" data-domain="amysavagenutrition.com" data-platform="WordPress">
         <a class="frame" href="https://amysavagenutrition.com/" target="_blank" rel="noopener" aria-label="Open Amy Savage Nutrition in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">amysavagenutrition.com</span></span>
-          <span class="shot"><img src="images/amy-savage-nutrition.jpg" width="720" height="1200" alt="Amy Savage Nutrition homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/amy-savage-nutrition.jpg" width="1100" height="1833" alt="Amy Savage Nutrition homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -667,7 +587,7 @@
       <article class="card" data-name="wellsome" data-domain="wellsome.com" data-platform="WordPress">
         <a class="frame" href="https://wellsome.com/" target="_blank" rel="noopener" aria-label="Open Wellsome in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">wellsome.com</span></span>
-          <span class="shot"><img src="images/wellsome.jpg" width="720" height="1200" alt="Wellsome homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/wellsome.jpg" width="1100" height="1833" alt="Wellsome homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -678,10 +598,24 @@
           <button class="copy" type="button" data-url="https://wellsome.com/" aria-label="Copy link to Wellsome">Copy link</button>
         </div>
       </article>
+      <article class="card" data-name="aspire beacon co" data-domain="aspirebeacon.framer.website" data-platform="Framer">
+        <a class="frame" href="https://aspirebeacon.framer.website/" target="_blank" rel="noopener" aria-label="Open Aspire Beacon Co in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">aspirebeacon.framer.website</span></span>
+          <span class="shot"><img src="images/aspire-beacon-co.jpg" width="1100" height="1833" alt="Aspire Beacon Co homepage" loading="lazy" decoding="async"></span>
+          
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="https://aspirebeacon.framer.website/" target="_blank" rel="noopener" tabindex="-1">Aspire Beacon Co</a>
+            <span class="sub">aspirebeacon.framer.website <span class="dot">·</span> Framer</span>
+          </div>
+          <button class="copy" type="button" data-url="https://aspirebeacon.framer.website/" aria-label="Copy link to Aspire Beacon Co">Copy link</button>
+        </div>
+      </article>
       <article class="card" data-name="unique blendz" data-domain="uniqueblendz.com.au" data-platform="WordPress">
         <a class="frame" href="https://uniqueblendz.com.au/" target="_blank" rel="noopener" aria-label="Open Unique Blendz in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">uniqueblendz.com.au</span></span>
-          <span class="shot"><img src="images/unique-blendz.jpg" width="720" height="1200" alt="Unique Blendz homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/unique-blendz.jpg" width="1100" height="1833" alt="Unique Blendz homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -695,7 +629,7 @@
       <article class="card" data-name="healing hands skin &amp; laser" data-domain="healinghandsskinlaser.com" data-platform="Framer">
         <a class="frame" href="https://healinghandsskinlaser.com/" target="_blank" rel="noopener" aria-label="Open Healing Hands Skin &amp; Laser in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">healinghandsskinlaser.com</span></span>
-          <span class="shot"><img src="images/healing-hands-skin-laser.jpg" width="720" height="1200" alt="Healing Hands Skin &amp; Laser homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/healing-hands-skin-laser.jpg" width="1100" height="1833" alt="Healing Hands Skin &amp; Laser homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -711,24 +645,10 @@
     <section class="cat" data-cat="Healthcare">
       <h2>Healthcare <span class="count">3</span></h2>
       <div class="grid">
-      <article class="card" data-name="playful paediatrics" data-domain="playfulpaediatrics.com.au" data-platform="Framer">
-        <a class="frame" href="https://www.playfulpaediatrics.com.au/" target="_blank" rel="noopener" aria-label="Open Playful Paediatrics in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">playfulpaediatrics.com.au</span></span>
-          <span class="shot"><img src="images/playful-paediatrics.jpg" width="720" height="1200" alt="Playful Paediatrics homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://www.playfulpaediatrics.com.au/" target="_blank" rel="noopener" tabindex="-1">Playful Paediatrics</a>
-            <span class="sub">playfulpaediatrics.com.au <span class="dot">·</span> Framer</span>
-          </div>
-          <button class="copy" type="button" data-url="https://www.playfulpaediatrics.com.au/" aria-label="Copy link to Playful Paediatrics">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="lucent dental" data-domain="lucentdental.com.au" data-platform="Framer">
         <a class="frame" href="https://www.lucentdental.com.au/" target="_blank" rel="noopener" aria-label="Open Lucent Dental in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">lucentdental.com.au</span></span>
-          <span class="shot"><img src="images/lucent-dental.jpg" width="720" height="1200" alt="Lucent Dental homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/lucent-dental.jpg" width="1100" height="1833" alt="Lucent Dental homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -739,10 +659,24 @@
           <button class="copy" type="button" data-url="https://www.lucentdental.com.au/" aria-label="Copy link to Lucent Dental">Copy link</button>
         </div>
       </article>
+      <article class="card" data-name="playful paediatrics" data-domain="playfulpaediatrics.com.au" data-platform="Framer">
+        <a class="frame" href="https://www.playfulpaediatrics.com.au/" target="_blank" rel="noopener" aria-label="Open Playful Paediatrics in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">playfulpaediatrics.com.au</span></span>
+          <span class="shot"><img src="images/playful-paediatrics.jpg" width="1100" height="1833" alt="Playful Paediatrics homepage" loading="lazy" decoding="async"></span>
+          
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="https://www.playfulpaediatrics.com.au/" target="_blank" rel="noopener" tabindex="-1">Playful Paediatrics</a>
+            <span class="sub">playfulpaediatrics.com.au <span class="dot">·</span> Framer</span>
+          </div>
+          <button class="copy" type="button" data-url="https://www.playfulpaediatrics.com.au/" aria-label="Copy link to Playful Paediatrics">Copy link</button>
+        </div>
+      </article>
       <article class="card" data-name="rhythmic integrations" data-domain="rhythmicintegrations.com" data-platform="WordPress">
         <a class="frame" href="https://rhythmicintegrations.com/" target="_blank" rel="noopener" aria-label="Open Rhythmic Integrations in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">rhythmicintegrations.com</span></span>
-          <span class="shot"><img src="images/rhythmic-integrations.jpg" width="720" height="1200" alt="Rhythmic Integrations homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/rhythmic-integrations.jpg" width="1100" height="1833" alt="Rhythmic Integrations homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -761,7 +695,7 @@
       <article class="card" data-name="soco event hire" data-domain="socoeventhire.com.au" data-platform="WordPress">
         <a class="frame" href="https://www.socoeventhire.com.au/" target="_blank" rel="noopener" aria-label="Open SOCO Event Hire in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">socoeventhire.com.au</span></span>
-          <span class="shot"><img src="images/soco-event-hire.jpg" width="720" height="1200" alt="SOCO Event Hire homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/soco-event-hire.jpg" width="1100" height="1833" alt="SOCO Event Hire homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -775,7 +709,7 @@
       <article class="card" data-name="pillow &amp; pine" data-domain="pillowandpine.com.au" data-platform="WordPress">
         <a class="frame" href="https://pillowandpine.com.au/" target="_blank" rel="noopener" aria-label="Open Pillow &amp; Pine in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">pillowandpine.com.au</span></span>
-          <span class="shot"><img src="images/pillow-pine.jpg" width="720" height="1200" alt="Pillow &amp; Pine homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/pillow-pine.jpg" width="1100" height="1833" alt="Pillow &amp; Pine homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -794,8 +728,8 @@
       <article class="card" data-name="brisbane motor museum" data-domain="brisbanemotormuseum.com.au" data-platform="Framer">
         <a class="frame" href="https://www.brisbanemotormuseum.com.au/" target="_blank" rel="noopener" aria-label="Open Brisbane Motor Museum in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">brisbanemotormuseum.com.au</span></span>
-          <span class="shot"><img src="images/brisbane-motor-museum.jpg" width="720" height="1200" alt="Brisbane Motor Museum homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
+          <span class="shot"><img src="images/brisbane-motor-museum.jpg" width="1100" height="1833" alt="Brisbane Motor Museum homepage" loading="lazy" decoding="async"></span>
+          
         </a>
         <div class="meta">
           <div class="names">
@@ -808,7 +742,7 @@
       <article class="card" data-name="brockenchack wines" data-domain="brockenchack.com.au" data-platform="WordPress">
         <a class="frame" href="https://brockenchack.com.au/" target="_blank" rel="noopener" aria-label="Open Brockenchack Wines in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">brockenchack.com.au</span></span>
-          <span class="shot"><img src="images/brockenchack-wines.jpg" width="720" height="1200" alt="Brockenchack Wines homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/brockenchack-wines.jpg" width="1100" height="1833" alt="Brockenchack Wines homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -822,7 +756,7 @@
       <article class="card" data-name="lyons production" data-domain="lyonsproduction.org" data-platform="Framer">
         <a class="frame" href="https://lyonsproduction.org/" target="_blank" rel="noopener" aria-label="Open Lyons Production in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">lyonsproduction.org</span></span>
-          <span class="shot"><img src="images/lyons-production.jpg" width="720" height="1200" alt="Lyons Production homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/lyons-production.jpg" width="1100" height="1833" alt="Lyons Production homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -836,7 +770,7 @@
       <article class="card" data-name="1813 (tinonee vineyard estate)" data-domain="1813.com.au" data-platform="WordPress">
         <a class="frame" href="https://1813.com.au/" target="_blank" rel="noopener" aria-label="Open 1813 (Tinonee Vineyard Estate) in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">1813.com.au</span></span>
-          <span class="shot"><img src="images/1813-tinonee-vineyard-estate.jpg" width="720" height="1200" alt="1813 (Tinonee Vineyard Estate) homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/1813-tinonee-vineyard-estate.jpg" width="1100" height="1833" alt="1813 (Tinonee Vineyard Estate) homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -850,7 +784,7 @@
       <article class="card" data-name="imperfect creatives" data-domain="imperfectcreatives.com" data-platform="Framer">
         <a class="frame" href="https://imperfectcreatives.com/" target="_blank" rel="noopener" aria-label="Open Imperfect Creatives in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">imperfectcreatives.com</span></span>
-          <span class="shot"><img src="images/imperfect-creatives.jpg" width="720" height="1200" alt="Imperfect Creatives homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/imperfect-creatives.jpg" width="1100" height="1833" alt="Imperfect Creatives homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -869,7 +803,7 @@
       <article class="card" data-name="plant baked" data-domain="plantbaked.com.au" data-platform="WordPress">
         <a class="frame" href="https://plantbaked.com.au/" target="_blank" rel="noopener" aria-label="Open Plant Baked in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">plantbaked.com.au</span></span>
-          <span class="shot"><img src="images/plant-baked.jpg" width="720" height="1200" alt="Plant Baked homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/plant-baked.jpg" width="1100" height="1833" alt="Plant Baked homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -883,7 +817,7 @@
       <article class="card" data-name="sweet nectar" data-domain="sweetnectar.com.au" data-platform="WordPress">
         <a class="frame" href="https://sweetnectar.com.au/" target="_blank" rel="noopener" aria-label="Open Sweet Nectar in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">sweetnectar.com.au</span></span>
-          <span class="shot"><img src="images/sweet-nectar.jpg" width="720" height="1200" alt="Sweet Nectar homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/sweet-nectar.jpg" width="1100" height="1833" alt="Sweet Nectar homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -897,26 +831,12 @@
       </div>
     </section>
     <section class="cat" data-cat="Ecommerce">
-      <h2>Ecommerce <span class="count">3</span></h2>
+      <h2>Ecommerce <span class="count">2</span></h2>
       <div class="grid">
-      <article class="card" data-name="lifepac" data-domain="lifepac.com.au" data-platform="Shopify">
-        <a class="frame" href="https://www.lifepac.com.au/" target="_blank" rel="noopener" aria-label="Open LifePac in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">lifepac.com.au</span></span>
-          <span class="shot"><img src="images/lifepac.jpg" width="720" height="1200" alt="LifePac homepage" loading="lazy" decoding="async"></span>
-          
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://www.lifepac.com.au/" target="_blank" rel="noopener" tabindex="-1">LifePac</a>
-            <span class="sub">lifepac.com.au <span class="dot">·</span> Shopify</span>
-          </div>
-          <button class="copy" type="button" data-url="https://www.lifepac.com.au/" aria-label="Copy link to LifePac">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="desden" data-domain="desden.com" data-platform="Shopify">
         <a class="frame" href="https://desden.com/" target="_blank" rel="noopener" aria-label="Open Desden in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">desden.com</span></span>
-          <span class="shot"><img src="images/desden.jpg" width="720" height="1200" alt="Desden homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/desden.jpg" width="1100" height="1833" alt="Desden homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -930,7 +850,7 @@
       <article class="card" data-name="dreamer rv" data-domain="dreamerrv.com.au" data-platform="Shopify">
         <a class="frame" href="https://www.dreamerrv.com.au/" target="_blank" rel="noopener" aria-label="Open Dreamer RV in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">dreamerrv.com.au</span></span>
-          <span class="shot"><img src="images/dreamer-rv.jpg" width="720" height="1200" alt="Dreamer RV homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/dreamer-rv.jpg" width="1100" height="1833" alt="Dreamer RV homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -949,7 +869,7 @@
       <article class="card" data-name="the different society" data-domain="thedifferentsociety.com.au" data-platform="Framer + Shopify">
         <a class="frame" href="https://www.thedifferentsociety.com.au/" target="_blank" rel="noopener" aria-label="Open The Different Society in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">thedifferentsociety.com.au</span></span>
-          <span class="shot"><img src="images/the-different-society.jpg" width="720" height="1200" alt="The Different Society homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/the-different-society.jpg" width="1100" height="1833" alt="The Different Society homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -968,7 +888,7 @@
       <article class="card" data-name="moira hughes couture" data-domain="moirahughes.com.au" data-platform="WordPress">
         <a class="frame" href="https://moirahughes.com.au/" target="_blank" rel="noopener" aria-label="Open Moira Hughes Couture in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">moirahughes.com.au</span></span>
-          <span class="shot"><img src="images/moira-hughes-couture.jpg" width="720" height="1200" alt="Moira Hughes Couture homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/moira-hughes-couture.jpg" width="1100" height="1833" alt="Moira Hughes Couture homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -982,7 +902,7 @@
       <article class="card" data-name="prestonzly" data-domain="prestonzly.com" data-platform="Shopify">
         <a class="frame" href="https://prestonzly.com/" target="_blank" rel="noopener" aria-label="Open PrestonZly in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">prestonzly.com</span></span>
-          <span class="shot"><img src="images/prestonzly.jpg" width="720" height="1200" alt="PrestonZly homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/prestonzly.jpg" width="1100" height="1833" alt="PrestonZly homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1001,7 +921,7 @@
       <article class="card" data-name="b&amp;b foodpak" data-domain="bbfoodpak.com" data-platform="WordPress">
         <a class="frame" href="https://bbfoodpak.com/" target="_blank" rel="noopener" aria-label="Open B&amp;B Foodpak in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">bbfoodpak.com</span></span>
-          <span class="shot"><img src="images/b-b-foodpak.jpg" width="720" height="1200" alt="B&amp;B Foodpak homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/b-b-foodpak.jpg" width="1100" height="1833" alt="B&amp;B Foodpak homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1015,7 +935,7 @@
       <article class="card" data-name="patterson building co" data-domain="pattersonbuildingco.com" data-platform="WordPress">
         <a class="frame" href="https://pattersonbuildingco.com/" target="_blank" rel="noopener" aria-label="Open Patterson Building Co in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">pattersonbuildingco.com</span></span>
-          <span class="shot"><img src="images/patterson-building-co.jpg" width="720" height="1200" alt="Patterson Building Co homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/patterson-building-co.jpg" width="1100" height="1833" alt="Patterson Building Co homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1029,7 +949,7 @@
       <article class="card" data-name="pd project delivery" data-domain="pdprojectdelivery.com" data-platform="Framer">
         <a class="frame" href="https://pdprojectdelivery.com/" target="_blank" rel="noopener" aria-label="Open PD Project Delivery in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">pdprojectdelivery.com</span></span>
-          <span class="shot"><img src="images/pd-project-delivery.jpg" width="720" height="1200" alt="PD Project Delivery homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/pd-project-delivery.jpg" width="1100" height="1833" alt="PD Project Delivery homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1043,7 +963,7 @@
       <article class="card" data-name="amscorp scientific" data-domain="amscorpscientific.com" data-platform="Framer">
         <a class="frame" href="https://amscorpscientific.com/" target="_blank" rel="noopener" aria-label="Open Amscorp Scientific in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">amscorpscientific.com</span></span>
-          <span class="shot"><img src="images/amscorp-scientific.jpg" width="720" height="1200" alt="Amscorp Scientific homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/amscorp-scientific.jpg" width="1100" height="1833" alt="Amscorp Scientific homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1057,26 +977,12 @@
       </div>
     </section>
     <section class="cat" data-cat="Agriculture">
-      <h2>Agriculture <span class="count">4</span></h2>
+      <h2>Agriculture <span class="count">3</span></h2>
       <div class="grid">
-      <article class="card" data-name="bunya beef" data-domain="bunyabeef.com.au" data-platform="WordPress">
-        <a class="frame" href="https://bunyabeef.com.au/" target="_blank" rel="noopener" aria-label="Open Bunya Beef in a new tab">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">bunyabeef.com.au</span></span>
-          <span class="shot"><img src="images/bunya-beef.jpg" width="720" height="1200" alt="Bunya Beef homepage" loading="lazy" decoding="async"></span>
-          
-        </a>
-        <div class="meta">
-          <div class="names">
-            <a class="client" href="https://bunyabeef.com.au/" target="_blank" rel="noopener" tabindex="-1">Bunya Beef</a>
-            <span class="sub">bunyabeef.com.au <span class="dot">·</span> WordPress</span>
-          </div>
-          <button class="copy" type="button" data-url="https://bunyabeef.com.au/" aria-label="Copy link to Bunya Beef">Copy link</button>
-        </div>
-      </article>
       <article class="card" data-name="rich mc simmentals" data-domain="richmcsimmentals.com" data-platform="WordPress">
         <a class="frame" href="https://richmcsimmentals.com/" target="_blank" rel="noopener" aria-label="Open Rich Mc Simmentals in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">richmcsimmentals.com</span></span>
-          <span class="shot"><img src="images/rich-mc-simmentals.jpg" width="720" height="1200" alt="Rich Mc Simmentals homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/rich-mc-simmentals.jpg" width="1100" height="1833" alt="Rich Mc Simmentals homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1090,7 +996,7 @@
       <article class="card" data-name="wilbar cattle co" data-domain="wilbarcattle.com" data-platform="WordPress">
         <a class="frame" href="https://wilbarcattle.com/" target="_blank" rel="noopener" aria-label="Open Wilbar Cattle Co in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">wilbarcattle.com</span></span>
-          <span class="shot"><img src="images/wilbar-cattle-co.jpg" width="720" height="1200" alt="Wilbar Cattle Co homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/wilbar-cattle-co.jpg" width="1100" height="1833" alt="Wilbar Cattle Co homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1104,7 +1010,7 @@
       <article class="card" data-name="tilco" data-domain="tilco.com.au" data-platform="Framer">
         <a class="frame" href="https://tilco.com.au/" target="_blank" rel="noopener" aria-label="Open Tilco in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">tilco.com.au</span></span>
-          <span class="shot"><img src="images/tilco.jpg" width="720" height="1200" alt="Tilco homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/tilco.jpg" width="1100" height="1833" alt="Tilco homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1123,7 +1029,7 @@
       <article class="card" data-name="christie moore photography" data-domain="christiemoorephotography.com" data-platform="Framer">
         <a class="frame" href="https://www.christiemoorephotography.com/" target="_blank" rel="noopener" aria-label="Open Christie Moore Photography in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">christiemoorephotography.com</span></span>
-          <span class="shot"><img src="images/christie-moore-photography.jpg" width="720" height="1200" alt="Christie Moore Photography homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/christie-moore-photography.jpg" width="1100" height="1833" alt="Christie Moore Photography homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1137,7 +1043,7 @@
       <article class="card" data-name="the arctic photographer" data-domain="thearcticphotographer.com" data-platform="Framer">
         <a class="frame" href="https://thearcticphotographer.com/" target="_blank" rel="noopener" aria-label="Open The Arctic Photographer in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">thearcticphotographer.com</span></span>
-          <span class="shot"><img src="images/the-arctic-photographer.jpg" width="720" height="1200" alt="The Arctic Photographer homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/the-arctic-photographer.jpg" width="1100" height="1833" alt="The Arctic Photographer homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1156,7 +1062,7 @@
       <article class="card" data-name="lovenote copywriting" data-domain="lovenotecopywriting.com" data-platform="WordPress">
         <a class="frame" href="https://lovenotecopywriting.com/" target="_blank" rel="noopener" aria-label="Open Lovenote Copywriting in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">lovenotecopywriting.com</span></span>
-          <span class="shot"><img src="images/lovenote-copywriting.jpg" width="720" height="1200" alt="Lovenote Copywriting homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/lovenote-copywriting.jpg" width="1100" height="1833" alt="Lovenote Copywriting homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1170,7 +1076,7 @@
       <article class="card" data-name="scribe cartel" data-domain="scribecartel.com" data-platform="Framer">
         <a class="frame" href="https://scribecartel.com/" target="_blank" rel="noopener" aria-label="Open Scribe Cartel in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">scribecartel.com</span></span>
-          <span class="shot"><img src="images/scribe-cartel.jpg" width="720" height="1200" alt="Scribe Cartel homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/scribe-cartel.jpg" width="1100" height="1833" alt="Scribe Cartel homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1189,8 +1095,8 @@
       <article class="card" data-name="nada backovic" data-domain="nadabackovic.com" data-platform="WordPress">
         <a class="frame" href="https://nadabackovic.com/" target="_blank" rel="noopener" aria-label="Open Nada Backovic in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">nadabackovic.com</span></span>
-          <span class="shot"><img src="images/nada-backovic.jpg" width="720" height="1200" alt="Nada Backovic homepage" loading="lazy" decoding="async"></span>
-          <span class="new">New</span>
+          <span class="shot"><img src="images/nada-backovic.jpg" width="1100" height="1833" alt="Nada Backovic homepage" loading="lazy" decoding="async"></span>
+          
         </a>
         <div class="meta">
           <div class="names">
@@ -1208,7 +1114,7 @@
       <article class="card" data-name="uq union" data-domain="uqu.com.au" data-platform="WordPress">
         <a class="frame" href="https://uqu.com.au/" target="_blank" rel="noopener" aria-label="Open UQ Union in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">uqu.com.au</span></span>
-          <span class="shot"><img src="images/uq-union.jpg" width="720" height="1200" alt="UQ Union homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/uq-union.jpg" width="1100" height="1833" alt="UQ Union homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1222,7 +1128,7 @@
       <article class="card" data-name="little child big mind" data-domain="littlechildbigmind.com.au" data-platform="Framer">
         <a class="frame" href="https://littlechildbigmind.com.au/" target="_blank" rel="noopener" aria-label="Open Little Child Big Mind in a new tab">
           <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">littlechildbigmind.com.au</span></span>
-          <span class="shot"><img src="images/little-child-big-mind.jpg" width="720" height="1200" alt="Little Child Big Mind homepage" loading="lazy" decoding="async"></span>
+          <span class="shot"><img src="images/little-child-big-mind.jpg" width="1100" height="1833" alt="Little Child Big Mind homepage" loading="lazy" decoding="async"></span>
           
         </a>
         <div class="meta">
@@ -1235,50 +1141,10 @@
       </article>
       </div>
     </section>
-    <p class="empty" id="empty">No sites match. Clear the search or pick another industry.</p>
   </main>
   <footer>Sparo Studios internal, for the new business team. Last updated 18 November 2026.</footer>
 </div>
 <script>
-  const q = document.getElementById('q');
-  const shown = document.getElementById('shown');
-  const empty = document.getElementById('empty');
-  const total = document.querySelectorAll('.card').length;
-  let activeCat = 'All', activePlat = 'All platforms';
-
-  function apply(){
-    const term = q.value.trim().toLowerCase();
-    let visible = 0;
-    document.querySelectorAll('section.cat').forEach(sec => {
-      const inCat = activeCat === 'All' || sec.dataset.cat === activeCat;
-      let n = 0;
-      sec.querySelectorAll('.card').forEach(card => {
-        const inPlat = activePlat === 'All platforms' || card.dataset.platform.split(' + ').includes(activePlat);
-        const hit = inCat && inPlat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
-        card.style.display = hit ? '' : 'none';
-        if (hit) n++;
-      });
-      sec.style.display = n ? '' : 'none';
-      visible += n;
-    });
-    shown.textContent = visible + ' of ' + total + ' sites';
-    empty.style.display = visible ? 'none' : 'block';
-  }
-
-  function chipGroup(id, key, set){
-    const el = document.getElementById(id);
-    el.addEventListener('click', e => {
-      const b = e.target.closest('.chip'); if (!b) return;
-      el.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      b.classList.add('active');
-      set(b.dataset[key]);
-      apply();
-    });
-  }
-  chipGroup('chips', 'cat', v => activeCat = v);
-  chipGroup('platchips', 'plat', v => activePlat = v);
-  q.addEventListener('input', apply);
-
   document.querySelectorAll('.copy').forEach(btn => {
     btn.addEventListener('click', () => {
       navigator.clipboard.writeText(btn.dataset.url).then(() => {
@@ -1287,7 +1153,6 @@
       });
     });
   });
-  apply();
 </script>
 </body>
 </html>

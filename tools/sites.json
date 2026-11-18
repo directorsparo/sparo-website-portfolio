@@ -27,8 +27,7 @@
   "cat": "Recruitment",
   "name": "Social Friends",
   "url": "https://socialfriends.framer.website/",
-  "platform": "Framer",
-  "recent": true
+  "platform": "Framer"
  },
  {
   "cat": "Professional Services",
@@ -92,12 +91,6 @@
  },
  {
   "cat": "Marketing",
-  "name": "Thea Media",
-  "url": "https://theamedia.com.au/",
-  "platform": "WordPress"
- },
- {
-  "cat": "Marketing",
   "name": "Meaningful Agency",
   "url": "https://www.meaningfulagency.com.au/",
   "platform": "Framer"
@@ -118,8 +111,7 @@
   "cat": "Finance",
   "name": "SJF Bookkeeping",
   "url": "https://sjfbookkeeping.com.au/",
-  "platform": "Framer",
-  "recent": true
+  "platform": "Framer"
  },
  {
   "cat": "Coaching & Personal Brands",
@@ -155,8 +147,7 @@
   "cat": "Health & Wellness",
   "name": "Aspire Beacon Co",
   "url": "https://aspirebeacon.framer.website/",
-  "platform": "Framer",
-  "recent": true
+  "platform": "Framer"
  },
  {
   "cat": "Healthcare",
@@ -168,8 +159,7 @@
   "cat": "Healthcare",
   "name": "Playful Paediatrics",
   "url": "https://www.playfulpaediatrics.com.au/",
-  "platform": "Framer",
-  "recent": true
+  "platform": "Framer"
  },
  {
   "cat": "Healthcare",
@@ -187,8 +177,7 @@
   "cat": "Tourism, Hospo & Entertainment",
   "name": "Brisbane Motor Museum",
   "url": "https://www.brisbanemotormuseum.com.au/",
-  "platform": "Framer",
-  "recent": true
+  "platform": "Framer"
  },
  {
   "cat": "Tourism, Hospo & Entertainment",
@@ -235,12 +224,6 @@
  },
  {
   "cat": "Agriculture",
-  "name": "Bunya Beef",
-  "url": "https://bunyabeef.com.au/",
-  "platform": "WordPress"
- },
- {
-  "cat": "Agriculture",
   "name": "Rich Mc Simmentals",
   "url": "https://richmcsimmentals.com/",
   "platform": "WordPress"
@@ -279,20 +262,13 @@
   "cat": "Creative & Design",
   "name": "Nada Backovic",
   "url": "https://nadabackovic.com/",
-  "platform": "WordPress",
-  "recent": true
+  "platform": "WordPress"
  },
  {
   "cat": "Framer/Shopify",
   "name": "The Different Society",
   "url": "https://www.thedifferentsociety.com.au/",
   "platform": "Framer + Shopify"
- },
- {
-  "cat": "Ecommerce",
-  "name": "LifePac",
-  "url": "https://www.lifepac.com.au/",
-  "platform": "Shopify"
  },
  {
   "cat": "Fashion",
@@ -361,12 +337,6 @@
   "platform": "Framer"
  },
  {
-  "cat": "Professional Services",
-  "name": "Culture Plus Consulting",
-  "url": "https://cultureplusconsulting.com/",
-  "platform": "Framer"
- },
- {
   "cat": "Industrial",
   "name": "PD Project Delivery",
   "url": "https://pdprojectdelivery.com/",
@@ -415,12 +385,6 @@
   "platform": "Framer"
  },
  {
-  "cat": "Coaching & Personal Brands",
-  "name": "Rebecca Antonucci",
-  "url": "https://rebeccaantonucci.com/",
-  "platform": "Framer"
- },
- {
   "cat": "Tourism, Hospo & Entertainment",
   "name": "Imperfect Creatives",
   "url": "https://imperfectcreatives.com/",
@@ -429,7 +393,7 @@
  {
   "cat": "Real Estate",
   "name": "Dowling Property",
-  "url": "https://www.dowlingproperty.com.au/",
+  "url": "https://dowlingterrace.com.au/",
   "platform": "WordPress"
  },
  {
@@ -437,5 +401,11 @@
   "name": "Healing Hands Skin & Laser",
   "url": "https://healinghandsskinlaser.com/",
   "platform": "Framer"
+ },
+ {
+  "cat": "Marketing",
+  "name": "Million Billion Media",
+  "url": "https://millionbillionmedia.com/",
+  "platform": "WordPress"
  }
 ]

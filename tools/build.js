@@ -27,7 +27,7 @@ function image(site) {
   const src = path.join(DIR, 'shots', slug(site.name) + '.png');
   const out = path.join(IMG, slug(site.name) + '.jpg');
   if (fs.existsSync(src) && (!fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(src).mtimeMs)) {
-    execFileSync('sips', ['-Z', '1200', '-s', 'format', 'jpeg', '-s', 'formatOptions', '62', src, '--out', out], { stdio: 'ignore' });
+    execFileSync('sips', ['--resampleWidth', '1100', '-s', 'format', 'jpeg', '-s', 'formatOptions', '60', src, '--out', out], { stdio: 'ignore' });
   }
   if (!fs.existsSync(out)) { missing.push(site.name); return null; }
   const info = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', out]).toString();
@@ -75,12 +75,6 @@ for (const cat of cats) {
     </section>`;
 }
 
-const chips = ['All', ...cats].map((c, i) =>
-  `<button class="chip${i === 0 ? ' active' : ''}" data-cat="${esc(c)}" type="button">${esc(c)}</button>`).join('');
-const platforms = [...new Set(sites.flatMap(s => (s.platform || '').split(' + ')).filter(Boolean))].sort();
-const platChips = ['All platforms', ...platforms].map((p, i) =>
-  `<button class="chip${i === 0 ? ' active' : ''}" data-plat="${esc(p)}" type="button">${esc(p)}</button>`).join('');
-
 const updated = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const html = `<!doctype html>
@@ -116,23 +110,7 @@ const html = `<!doctype html>
   .wrap{max-width:1320px;margin:0 auto;padding:0 40px}
   header.top{padding:56px 0 8px}
   header.top h1{font-size:34px;font-weight:650;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px;text-wrap:balance}
-  header.top p{margin:0;color:var(--sub);max-width:60ch;font-size:16px}
-  header.top .total{margin-top:14px;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
-
-  .toolbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
-  .trow{display:flex;align-items:flex-start;gap:14px;padding:12px 0}
-  .trow + .trow{border-top:1px solid var(--line)}
-  .trow-top{align-items:center}
-  .lbl{flex:0 0 72px;font:600 11px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding-top:9px}
-  .search{flex:0 1 340px;min-width:200px}
-  .search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
-  .search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
-  .shown{margin-left:auto;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}
-  .chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
-  .chip{border:1px solid var(--line);background:var(--chipbg);color:var(--ink);padding:6px 12px;border-radius:999px;font:500 13px/1 system-ui,sans-serif;cursor:pointer}
-  .chip:hover{border-color:var(--sub)}
-  .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-  .chip:focus-visible,.copy:focus-visible,.frame:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .copy:focus-visible,.frame:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
   main{padding:8px 0 80px}
   .cat{margin-top:56px}
@@ -161,7 +139,6 @@ const html = `<!doctype html>
   .copy{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--accent);font:500 13px/1 system-ui,sans-serif;cursor:pointer;padding:8px 11px;border-radius:7px;margin-top:2px}
   .copy:hover{border-color:var(--accent)}
 
-  .empty{display:none;color:var(--sub);text-align:center;padding:80px 0}
   footer{padding:0 0 56px;color:var(--sub);font-size:12.5px}
 
   @media (max-width: 860px){
@@ -170,10 +147,6 @@ const html = `<!doctype html>
     header.top h1{font-size:28px}
     .grid{grid-template-columns:1fr;gap:36px}
     .cat{margin-top:44px}
-    .trow{flex-wrap:wrap}
-    .lbl{flex-basis:100%;padding-top:0}
-    .search{flex:1 1 100%}
-    .shown{margin-left:0}
   }
   @media (prefers-reduced-motion: reduce){
     .frame,.shot img{transition:none}
@@ -186,71 +159,14 @@ const html = `<!doctype html>
 <div class="wrap">
   <header class="top">
     <h1>Sparo Studios Website Portfolio</h1>
-    <p>Live client websites, grouped by industry. Hover a site to scroll through its homepage, click to open it in a new tab, or copy the link to send to a prospect.</p>
-    <div class="total">${sites.length} live websites</div>
   </header>
-
-  <div class="toolbar">
-    <div class="trow trow-top">
-      <div class="search"><input id="q" type="search" placeholder="Search client or domain" aria-label="Search sites"></div>
-      <span class="shown" id="shown"></span>
-    </div>
-    <div class="trow">
-      <span class="lbl">Industry</span>
-      <div class="chips" id="chips">${chips}</div>
-    </div>
-    <div class="trow">
-      <span class="lbl">Platform</span>
-      <div class="chips" id="platchips">${platChips}</div>
-    </div>
-  </div>
 
   <main>
     ${sections}
-    <p class="empty" id="empty">No sites match. Clear the search or pick another industry.</p>
   </main>
   <footer>Sparo Studios internal, for the new business team. Last updated ${updated}.</footer>
 </div>
 <script>
-  const q = document.getElementById('q');
-  const shown = document.getElementById('shown');
-  const empty = document.getElementById('empty');
-  const total = document.querySelectorAll('.card').length;
-  let activeCat = 'All', activePlat = 'All platforms';
-
-  function apply(){
-    const term = q.value.trim().toLowerCase();
-    let visible = 0;
-    document.querySelectorAll('section.cat').forEach(sec => {
-      const inCat = activeCat === 'All' || sec.dataset.cat === activeCat;
-      let n = 0;
-      sec.querySelectorAll('.card').forEach(card => {
-        const inPlat = activePlat === 'All platforms' || card.dataset.platform.split(' + ').includes(activePlat);
-        const hit = inCat && inPlat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
-        card.style.display = hit ? '' : 'none';
-        if (hit) n++;
-      });
-      sec.style.display = n ? '' : 'none';
-      visible += n;
-    });
-    shown.textContent = visible + ' of ' + total + ' sites';
-    empty.style.display = visible ? 'none' : 'block';
-  }
-
-  function chipGroup(id, key, set){
-    const el = document.getElementById(id);
-    el.addEventListener('click', e => {
-      const b = e.target.closest('.chip'); if (!b) return;
-      el.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      b.classList.add('active');
-      set(b.dataset[key]);
-      apply();
-    });
-  }
-  chipGroup('chips', 'cat', v => activeCat = v);
-  chipGroup('platchips', 'plat', v => activePlat = v);
-  q.addEventListener('input', apply);
-
   document.querySelectorAll('.copy').forEach(btn => {
     btn.addEventListener('click', () => {
       navigator.clipboard.writeText(btn.dataset.url).then(() => {
@@ -259,7 +175,6 @@ const html = `<!doctype html>
       });
     });
   });
-  apply();
 </script>
 </body>
 </html>
