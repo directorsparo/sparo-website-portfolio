@@ -250,12 +250,6 @@
   "platform": "WordPress"
  },
  {
-  "cat": "Agriculture",
-  "name": "Wilbar Cattle Co",
-  "url": "https://wilbarcattle.com/",
-  "platform": "WordPress"
- },
- {
   "cat": "Photography",
   "name": "Christie Moore Photography",
   "url": "https://www.christiemoorephotography.com/",
@@ -282,13 +276,6 @@
   "url": "https://scribecartel.com/",
   "platform": "Framer",
   "launched": "2026-06"
- },
- {
-  "cat": "Creative & Design",
-  "name": "Nada Backovic",
-  "url": "https://nadabackovic.com/",
-  "platform": "WordPress",
-  "launched": "2026-03"
  },
  {
   "cat": "Ecommerce",
