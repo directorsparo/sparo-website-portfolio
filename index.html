@@ -6,21 +6,9 @@
 <meta name="robots" content="noindex">
 <title>Sparo Studios Website Portfolio</title>
 <style>
+  /* Dark only, regardless of the viewer's device setting. */
   :root{
-    --paper:#FBFAF8; --ink:#1A1917; --sub:#6E6A63; --line:#E5E2DC; --card:#FFFFFF;
-    --accent:#4A6B57; --accent-ink:#FFFFFF; --chipbg:#F0EEE9; --barbg:#EEECE7; --dots:#D3CFC7;
-    --shadow:0 1px 2px rgba(26,25,23,.05),0 10px 30px rgba(26,25,23,.07);
-    --shadow-hi:0 2px 4px rgba(26,25,23,.06),0 18px 44px rgba(26,25,23,.12);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26; --card:#1F1D1A;
-      --accent:#7FA98E; --accent-ink:#14231B; --chipbg:#242220; --barbg:#2A2825; --dots:#45423D;
-      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
-      --shadow-hi:0 2px 4px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.5);
-    }
-  }
-  :root[data-theme="dark"]{
+    color-scheme:dark;
     --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26; --card:#1F1D1A;
     --accent:#7FA98E; --accent-ink:#14231B; --chipbg:#242220; --barbg:#2A2825; --dots:#45423D;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
