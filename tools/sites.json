@@ -15,19 +15,22 @@
   "cat": "Law",
   "name": "Simpson Quinn Lawyers",
   "url": "https://simpsonquinn.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2023-11"
  },
  {
   "cat": "Recruitment",
   "name": "AgentSync",
   "url": "https://agentsync.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-02"
  },
  {
   "cat": "Recruitment",
   "name": "Social Friends",
   "url": "https://socialfriends.framer.website/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-02"
  },
  {
   "cat": "Professional Services",
@@ -39,7 +42,8 @@
   "cat": "Professional Services",
   "name": "Lee Longmire Co",
   "url": "https://leelongmireco.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-05"
  },
  {
   "cat": "Professional Services",
@@ -51,19 +55,22 @@
   "cat": "Finance",
   "name": "The Integrated CFO",
   "url": "https://theintegratedcfo.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2024-12"
  },
  {
   "cat": "Professional Services",
   "name": "Aurelia Communications",
   "url": "https://aureliacommunications.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-05"
  },
  {
   "cat": "Real Estate",
   "name": "Parata Property",
   "url": "https://parataproperty.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-03"
  },
  {
   "cat": "Real Estate",
@@ -75,49 +82,57 @@
   "cat": "Marketing",
   "name": "Gordon Digital",
   "url": "https://gordondigital.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-11"
  },
  {
   "cat": "Marketing",
   "name": "Seasoned Digital",
   "url": "https://seasoneddigital.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-02"
  },
  {
   "cat": "Coaching & Personal Brands",
   "name": "Launch Queen",
   "url": "https://www.launchqueen.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-02"
  },
  {
   "cat": "Marketing",
   "name": "Meaningful Agency",
   "url": "https://www.meaningfulagency.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2025-10"
  },
  {
   "cat": "Marketing",
   "name": "Bright Red Marketing",
   "url": "https://brightredmarketing.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-05"
  },
  {
   "cat": "Finance",
   "name": "ICS Business & Finance",
   "url": "https://www.icsbusinessfinance.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-04"
  },
  {
   "cat": "Finance",
   "name": "SJF Bookkeeping",
   "url": "https://sjfbookkeeping.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-02"
  },
  {
   "cat": "Coaching & Personal Brands",
   "name": "Breanna May",
   "url": "https://www.breannamay.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-04"
  },
  {
   "cat": "Coaching & Personal Brands",
@@ -129,37 +144,43 @@
   "cat": "Coaching & Personal Brands",
   "name": "Dr Hayley Quinn",
   "url": "https://drhayleydquinn.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-02"
  },
  {
   "cat": "Health & Wellness",
   "name": "Amy Savage Nutrition",
   "url": "https://amysavagenutrition.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-02"
  },
  {
   "cat": "Health & Wellness",
   "name": "Wellsome",
   "url": "https://wellsome.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-12"
  },
  {
   "cat": "Health & Wellness",
   "name": "Aspire Beacon Co",
   "url": "https://aspirebeacon.framer.website/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Healthcare",
   "name": "Lucent Dental",
   "url": "https://www.lucentdental.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2025-11"
  },
  {
   "cat": "Healthcare",
   "name": "Playful Paediatrics",
   "url": "https://www.playfulpaediatrics.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-04"
  },
  {
   "cat": "Healthcare",
@@ -171,38 +192,36 @@
   "cat": "Events",
   "name": "SOCO Event Hire",
   "url": "https://www.socoeventhire.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-02"
  },
  {
   "cat": "Tourism, Hospo & Entertainment",
   "name": "Brisbane Motor Museum",
   "url": "https://www.brisbanemotormuseum.com.au/",
-  "platform": "Framer"
- },
- {
-  "cat": "Tourism, Hospo & Entertainment",
-  "name": "Brockenchack Wines",
-  "url": "https://brockenchack.com.au/",
-  "platform": "WordPress",
-  "note": "Also has shop/ecommerce"
+  "platform": "Framer",
+  "launched": "2026-03"
  },
  {
   "cat": "Tourism, Hospo & Entertainment",
   "name": "Lyons Production",
   "url": "https://lyonsproduction.org/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-03"
  },
  {
   "cat": "Tourism, Hospo & Entertainment",
   "name": "1813 (Tinonee Vineyard Estate)",
   "url": "https://1813.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2026-07"
  },
  {
   "cat": "Food",
   "name": "Plant Baked",
   "url": "https://plantbaked.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-09"
  },
  {
   "cat": "Food",
@@ -214,13 +233,15 @@
   "cat": "Industrial",
   "name": "B&B Foodpak",
   "url": "https://bbfoodpak.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-07"
  },
  {
   "cat": "Industrial",
   "name": "Patterson Building Co",
   "url": "https://pattersonbuildingco.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2026-05"
  },
  {
   "cat": "Agriculture",
@@ -238,46 +259,52 @@
   "cat": "Photography",
   "name": "Christie Moore Photography",
   "url": "https://www.christiemoorephotography.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2025-12"
  },
  {
   "cat": "Photography",
   "name": "The Arctic Photographer",
   "url": "https://thearcticphotographer.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-01"
  },
  {
-  "cat": "Copywriting",
+  "cat": "Marketing",
   "name": "Lovenote Copywriting",
   "url": "https://lovenotecopywriting.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2023-06"
  },
  {
-  "cat": "Copywriting",
+  "cat": "Marketing",
   "name": "Scribe Cartel",
   "url": "https://scribecartel.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-06"
  },
  {
   "cat": "Creative & Design",
   "name": "Nada Backovic",
   "url": "https://nadabackovic.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2026-03"
  },
  {
-  "cat": "Framer/Shopify",
+  "cat": "Ecommerce",
   "name": "The Different Society",
   "url": "https://www.thedifferentsociety.com.au/",
-  "platform": "Framer + Shopify"
+  "platform": "Framer + Shopify",
+  "launched": "2025-12"
  },
  {
-  "cat": "Fashion",
+  "cat": "Ecommerce",
   "name": "Moira Hughes Couture",
   "url": "https://moirahughes.com.au/",
   "platform": "WordPress"
  },
  {
-  "cat": "Fashion",
+  "cat": "Ecommerce",
   "name": "PrestonZly",
   "url": "https://prestonzly.com/",
   "platform": "Shopify"
@@ -292,114 +319,133 @@
   "cat": "Health & Wellness",
   "name": "Unique Blendz",
   "url": "https://uniqueblendz.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2026-04"
  },
  {
   "cat": "Coaching & Personal Brands",
   "name": "Shunanda",
   "url": "https://shunanda.co/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-06"
  },
  {
   "cat": "Professional Services",
   "name": "Slingshot Solutions",
   "url": "https://slingshot-solutions.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-06"
  },
  {
   "cat": "Events",
   "name": "Pillow & Pine",
   "url": "https://pillowandpine.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-03"
  },
  {
   "cat": "Finance",
   "name": "Baron Financials",
   "url": "https://baronfinance.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-08"
  },
  {
   "cat": "Professional Services",
   "name": "Brightworks",
   "url": "https://brightworks.net.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-11"
  },
  {
   "cat": "Professional Services",
   "name": "Restr",
   "url": "https://restr.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Industrial",
   "name": "PD Project Delivery",
   "url": "https://pdprojectdelivery.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Industrial",
   "name": "Amscorp Scientific",
   "url": "https://amscorpscientific.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-08"
  },
  {
   "cat": "Agriculture",
   "name": "Tilco",
   "url": "https://tilco.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Ecommerce",
   "name": "Desden",
   "url": "https://desden.com/",
-  "platform": "Shopify"
+  "platform": "Shopify",
+  "launched": "2026-07"
  },
  {
   "cat": "Ecommerce",
   "name": "Dreamer RV",
   "url": "https://www.dreamerrv.com.au/",
-  "platform": "Shopify"
+  "platform": "Shopify",
+  "launched": "2026-11"
  },
  {
   "cat": "Education",
   "name": "Little Child Big Mind",
   "url": "https://littlechildbigmind.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Law",
   "name": "Locke Family Law",
   "url": "https://lockefamilylaw.com.au/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Coaching & Personal Brands",
   "name": "Sarah Marshall Medium",
   "url": "https://sarahmarshallmedium.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
-  "cat": "Tourism, Hospo & Entertainment",
+  "cat": "Photography",
   "name": "Imperfect Creatives",
   "url": "https://imperfectcreatives.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-10"
  },
  {
   "cat": "Real Estate",
   "name": "Dowling Property",
   "url": "https://dowlingterrace.com.au/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2026-09"
  },
  {
   "cat": "Health & Wellness",
   "name": "Healing Hands Skin & Laser",
   "url": "https://healinghandsskinlaser.com/",
-  "platform": "Framer"
+  "platform": "Framer",
+  "launched": "2026-07"
  },
  {
   "cat": "Marketing",
   "name": "Million Billion Media",
   "url": "https://millionbillionmedia.com/",
-  "platform": "WordPress"
+  "platform": "WordPress",
+  "launched": "2025-05"
  }
 ]

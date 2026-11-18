@@ -14,11 +14,12 @@ const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const domain = u => u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
 
+// Sections with the most recent launches sit higher; Industrial and Agriculture stay at the bottom.
 const CAT_ORDER = [
-  'Law','Finance','Professional Services','Marketing','Recruitment','Real Estate',
-  'Coaching & Personal Brands','Health & Wellness','Healthcare','Events',
-  'Tourism, Hospo & Entertainment','Food','Ecommerce','Framer/Shopify','Fashion','Industrial',
-  'Agriculture','Photography','Copywriting','Creative & Design','Education'
+  'Ecommerce','Professional Services','Health & Wellness','Finance','Law',
+  'Tourism, Hospo & Entertainment','Coaching & Personal Brands','Marketing','Photography',
+  'Real Estate','Healthcare','Education','Recruitment','Creative & Design','Food','Events',
+  'Industrial','Agriculture'
 ];
 
 // Resize each capture to a web JPEG; skip when the JPEG is newer than the capture.
@@ -66,7 +67,8 @@ function card(site) {
 
 let sections = '';
 for (const cat of cats) {
-  const list = [...byCat[cat]].sort((a, b) => (!!b.recent - !!a.recent));
+  // newest launch first; undated sites keep their sites.json order after the dated ones
+  const list = [...byCat[cat]].sort((a, b) => (b.launched || '').localeCompare(a.launched || ''));
   sections += `
     <section class="cat" data-cat="${esc(cat)}">
       <h2>${esc(cat)} <span class="count">${list.length}</span></h2>
