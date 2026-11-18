@@ -1,10 +1,18 @@
+// Builds ../index.html and ../images/*.jpg from sites.json and shots/.
+// Usage: node build.js
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const DIR = __dirname;
+const ROOT = path.join(DIR, '..');
+const IMG = path.join(ROOT, 'images');
+fs.mkdirSync(IMG, { recursive: true });
+
 const sites = JSON.parse(fs.readFileSync(path.join(DIR, 'sites.json'), 'utf8'));
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const domain = u => u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
 
 const CAT_ORDER = [
   'Law','Finance','Professional Services','Marketing','Recruitment','Real Estate',
@@ -13,125 +21,179 @@ const CAT_ORDER = [
   'Agriculture','Photography','Copywriting','Creative & Design','Education'
 ];
 
+// Resize each capture to a web JPEG; skip when the JPEG is newer than the capture.
+const missing = [];
+function image(site) {
+  const src = path.join(DIR, 'shots', slug(site.name) + '.png');
+  const out = path.join(IMG, slug(site.name) + '.jpg');
+  if (fs.existsSync(src) && (!fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(src).mtimeMs)) {
+    execFileSync('sips', ['-Z', '1200', '-s', 'format', 'jpeg', '-s', 'formatOptions', '62', src, '--out', out], { stdio: 'ignore' });
+  }
+  if (!fs.existsSync(out)) { missing.push(site.name); return null; }
+  const info = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', out]).toString();
+  const w = +info.match(/pixelWidth: (\d+)/)[1], h = +info.match(/pixelHeight: (\d+)/)[1];
+  return { src: 'images/' + slug(site.name) + '.jpg', w, h };
+}
+
 const byCat = {};
 for (const s of sites) (byCat[s.cat] = byCat[s.cat] || []).push(s);
 const cats = CAT_ORDER.filter(c => byCat[c]);
+const unknown = Object.keys(byCat).filter(c => !CAT_ORDER.includes(c));
+if (unknown.length) throw new Error('Add to CAT_ORDER: ' + unknown.join(', '));
 
-let missing = [];
-function imgTag(site) {
-  const f = path.join(DIR, 'thumbs', slug(site.name) + '.jpg');
-  if (!fs.existsSync(f)) { missing.push(site.name); return '<div class="ph">No preview yet</div>'; }
-  const b64 = fs.readFileSync(f).toString('base64');
-  return `<img src="data:image/jpeg;base64,${b64}" alt="${esc(site.name)} homepage" loading="lazy">`;
+function card(site) {
+  const img = image(site);
+  const d = domain(site.url);
+  const shot = img
+    ? `<img src="${img.src}" width="${img.w}" height="${img.h}" alt="${esc(site.name)} homepage" loading="lazy" decoding="async">`
+    : '<div class="ph">Preview coming soon</div>';
+  return `
+      <article class="card" data-name="${esc(site.name.toLowerCase())}" data-domain="${esc(d)}" data-platform="${esc(site.platform)}">
+        <a class="frame" href="${esc(site.url)}" target="_blank" rel="noopener" aria-label="Open ${esc(site.name)} in a new tab">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">${esc(d)}</span></span>
+          <span class="shot">${shot}</span>
+          ${site.recent ? '<span class="new">New</span>' : ''}
+        </a>
+        <div class="meta">
+          <div class="names">
+            <a class="client" href="${esc(site.url)}" target="_blank" rel="noopener" tabindex="-1">${esc(site.name)}</a>
+            <span class="sub">${esc(d)}${site.platform ? ` <span class="dot">·</span> ${esc(site.platform)}` : ''}</span>
+          </div>
+          <button class="copy" type="button" data-url="${esc(site.url)}" aria-label="Copy link to ${esc(site.name)}">Copy link</button>
+        </div>
+      </article>`;
 }
-
-const domain = u => u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
 
 let sections = '';
 for (const cat of cats) {
-  const cards = byCat[cat].map(site => `
-      <a class="card" href="${esc(site.url)}" target="_blank" rel="noopener" data-name="${esc(site.name.toLowerCase())}" data-domain="${esc(domain(site.url))}" data-platform="${esc(site.platform)}">
-        <div class="shot">${imgTag(site)}${site.recent ? '<span class="new">New</span>' : ''}</div>
-        <div class="meta">
-          <div class="names">
-            <span class="client">${esc(site.name)}</span>
-            <span class="domain">${esc(domain(site.url))}</span>
-          </div>
-          <div class="row2">
-            ${site.platform ? `<span class="badge">${esc(site.platform)}</span>` : ''}
-            <button class="copy" type="button" data-url="${esc(site.url)}" aria-label="Copy link to ${esc(site.name)}">Copy link</button>
-          </div>
-        </div>
-      </a>`).join('');
+  const list = [...byCat[cat]].sort((a, b) => (!!b.recent - !!a.recent));
   sections += `
     <section class="cat" data-cat="${esc(cat)}">
-      <h2><span>${esc(cat)}</span><span class="count">${byCat[cat].length}</span></h2>
-      <div class="grid">${cards}</div>
+      <h2>${esc(cat)} <span class="count">${list.length}</span></h2>
+      <div class="grid">${list.map(card).join('')}
+      </div>
     </section>`;
 }
 
 const chips = ['All', ...cats].map((c, i) =>
   `<button class="chip${i === 0 ? ' active' : ''}" data-cat="${esc(c)}" type="button">${esc(c)}</button>`).join('');
-
 const platforms = [...new Set(sites.flatMap(s => (s.platform || '').split(' + ')).filter(Boolean))].sort();
 const platChips = ['All platforms', ...platforms].map((p, i) =>
-  `<button class="chip plat${i === 0 ? ' active' : ''}" data-plat="${esc(p)}" type="button">${esc(p)}</button>`).join('');
+  `<button class="chip${i === 0 ? ' active' : ''}" data-plat="${esc(p)}" type="button">${esc(p)}</button>`).join('');
 
-const html = `<title>Sparo Studios Website Portfolio</title>
+const updated = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sparo Studios Website Portfolio</title>
 <style>
   :root{
-    --paper:#FBFAF8; --ink:#1A1917; --sub:#6E6A63; --line:#E5E2DC;
-    --card:#FFFFFF; --accent:#4A6B57; --accent-ink:#FFFFFF;
-    --chipbg:#F0EEE9; --shadow:0 1px 2px rgba(26,25,23,.05),0 6px 20px rgba(26,25,23,.06);
+    --paper:#FBFAF8; --ink:#1A1917; --sub:#6E6A63; --line:#E5E2DC; --card:#FFFFFF;
+    --accent:#4A6B57; --accent-ink:#FFFFFF; --chipbg:#F0EEE9; --barbg:#EEECE7; --dots:#D3CFC7;
+    --shadow:0 1px 2px rgba(26,25,23,.05),0 10px 30px rgba(26,25,23,.07);
+    --shadow-hi:0 2px 4px rgba(26,25,23,.06),0 18px 44px rgba(26,25,23,.12);
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26;
-      --card:#1F1D1A; --accent:#7FA98E; --accent-ink:#14231B;
-      --chipbg:#242220; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35); }
-  }
-  :root[data-theme="light"]{
-    --paper:#FBFAF8; --ink:#1A1917; --sub:#6E6A63; --line:#E5E2DC;
-    --card:#FFFFFF; --accent:#4A6B57; --accent-ink:#FFFFFF;
-    --chipbg:#F0EEE9; --shadow:0 1px 2px rgba(26,25,23,.05),0 6px 20px rgba(26,25,23,.06);
+    :root:not([data-theme="light"]){
+      --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26; --card:#1F1D1A;
+      --accent:#7FA98E; --accent-ink:#14231B; --chipbg:#242220; --barbg:#2A2825; --dots:#45423D;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+      --shadow-hi:0 2px 4px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.5);
+    }
   }
   :root[data-theme="dark"]{
-    --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26;
-    --card:#1F1D1A; --accent:#7FA98E; --accent-ink:#14231B;
-    --chipbg:#242220; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35);
+    --paper:#161513; --ink:#EDEAE4; --sub:#9B968D; --line:#2C2A26; --card:#1F1D1A;
+    --accent:#7FA98E; --accent-ink:#14231B; --chipbg:#242220; --barbg:#2A2825; --dots:#45423D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+    --shadow-hi:0 2px 4px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.5);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-  header.top{padding:36px 32px 8px;max-width:1480px;margin:0 auto}
-  header.top h1{font-size:26px;font-weight:650;letter-spacing:-.01em;margin:0 0 4px}
-  header.top p{margin:0;color:var(--sub);max-width:62ch}
-  .toolbar{background:var(--paper);border-bottom:1px solid var(--line);margin-top:20px}
-  .toolbar-in{max-width:1480px;margin:0 auto;padding:14px 32px;display:flex;flex-direction:column}
-  .trow{display:flex;align-items:flex-start;gap:12px;padding:12px 0}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+  header.top{padding:56px 0 8px}
+  header.top h1{font-size:34px;font-weight:650;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px;text-wrap:balance}
+  header.top p{margin:0;color:var(--sub);max-width:60ch;font-size:16px}
+  header.top .total{margin-top:14px;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
+
+  .toolbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
+  .trow{display:flex;align-items:flex-start;gap:14px;padding:12px 0}
   .trow + .trow{border-top:1px solid var(--line)}
-  .trow-top{align-items:center;padding-top:2px}
-  .trow:last-child{padding-bottom:4px}
-  .lbl{flex:0 0 68px;font:600 11px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding-top:9px}
-  .search{flex:0 1 320px;min-width:200px;position:relative}
-  .search input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+  .trow-top{align-items:center}
+  .lbl{flex:0 0 72px;font:600 11px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding-top:9px}
+  .search{flex:0 1 340px;min-width:200px}
+  .search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
   .search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .shown{margin-left:auto;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}
   .chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
   .chip{border:1px solid var(--line);background:var(--chipbg);color:var(--ink);padding:6px 12px;border-radius:999px;font:500 13px/1 system-ui,sans-serif;cursor:pointer}
   .chip:hover{border-color:var(--sub)}
   .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-  .chip:focus-visible,.copy:focus-visible,.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .shown{color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}
-  main{max-width:1480px;margin:0 auto;padding:8px 32px 72px}
-  .cat{margin-top:36px}
-  .cat h2{display:flex;align-items:baseline;gap:10px;font-size:13px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-  .cat h2 .count{color:var(--sub);font-weight:500;letter-spacing:0;font-variant-numeric:tabular-nums}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-  .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease}
-  @media (prefers-reduced-motion: reduce){.card{transition:none}}
-  .card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(26,25,23,.06),0 12px 32px rgba(26,25,23,.10)}
-  .shot{position:relative;aspect-ratio:16/10;background:var(--chipbg);overflow:hidden}
-  .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .chip:focus-visible,.copy:focus-visible,.frame:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  main{padding:8px 0 80px}
+  .cat{margin-top:56px}
+  .cat h2{display:flex;align-items:baseline;gap:10px;font-size:22px;font-weight:650;letter-spacing:-.01em;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .cat h2 .count{font-size:14px;font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 40px}
+
+  .card{display:flex;flex-direction:column;gap:14px;min-width:0}
+  .frame{position:relative;display:block;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);transition:box-shadow .25s ease, transform .25s ease;text-decoration:none}
+  .frame:hover{box-shadow:var(--shadow-hi);transform:translateY(-2px)}
+  .bar{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;background:var(--barbg);border-bottom:1px solid var(--line)}
+  .bar i{width:9px;height:9px;border-radius:50%;background:var(--dots)}
+  .bar .url{margin:0 auto;padding-right:39px;font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--chipbg);container-type:size}
+  .shot img{display:block;width:100%;height:auto;transform:translateY(0);transition:transform 4.5s cubic-bezier(.45,.05,.4,1)}
+  .frame:hover .shot img,.frame:focus-visible .shot img{transform:translateY(calc(-100% + 100cqh));transition-duration:6s}
   .ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--sub);font-size:13px}
-  .new{position:absolute;top:10px;left:10px;background:var(--accent);color:var(--accent-ink);font:600 11px/1 system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;border-radius:6px}
-  .meta{display:flex;flex-direction:column;gap:8px;padding:12px 14px 13px}
-  .names{display:flex;flex-direction:column;gap:1px;min-width:0}
-  .client{font-weight:600;font-size:15px}
-  .domain{color:var(--sub);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .row2{display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .badge{font:500 11.5px/1 system-ui,sans-serif;color:var(--sub);border:1px solid var(--line);padding:4px 7px;border-radius:5px}
-  .copy{border:none;background:none;color:var(--accent);font:500 12.5px/1 system-ui,sans-serif;cursor:pointer;padding:5px 7px;border-radius:6px;margin-left:auto}
-  .copy:hover{background:var(--chipbg)}
-  .empty{display:none;color:var(--sub);text-align:center;padding:70px 0}
-  footer{max-width:1480px;margin:0 auto;padding:0 32px 48px;color:var(--sub);font-size:12.5px}
+  .new{position:absolute;top:44px;left:12px;background:var(--accent);color:var(--accent-ink);font:600 11px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:6px}
+
+  .meta{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:0 2px}
+  .names{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .client{font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .client:hover{text-decoration:underline;text-underline-offset:3px}
+  .sub{color:var(--sub);font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dot{padding:0 3px}
+  .copy{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--accent);font:500 13px/1 system-ui,sans-serif;cursor:pointer;padding:8px 11px;border-radius:7px;margin-top:2px}
+  .copy:hover{border-color:var(--accent)}
+
+  .empty{display:none;color:var(--sub);text-align:center;padding:80px 0}
+  footer{padding:0 0 56px;color:var(--sub);font-size:12.5px}
+
+  @media (max-width: 860px){
+    .wrap{padding:0 16px}
+    header.top{padding-top:36px}
+    header.top h1{font-size:28px}
+    .grid{grid-template-columns:1fr;gap:36px}
+    .cat{margin-top:44px}
+    .trow{flex-wrap:wrap}
+    .lbl{flex-basis:100%;padding-top:0}
+    .search{flex:1 1 100%}
+    .shown{margin-left:0}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .frame,.shot img{transition:none}
+    .frame:hover{transform:none}
+    .frame:hover .shot img,.frame:focus-visible .shot img{transform:none}
+  }
 </style>
-<header class="top">
-  <h1>Sparo Studios Website Portfolio</h1>
-  <p>Live client websites, organised by industry. Click a card to open the site in a new tab, or copy the link to send to a prospect.</p>
-</header>
-<div class="toolbar">
-  <div class="toolbar-in">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Sparo Studios Website Portfolio</h1>
+    <p>Live client websites, grouped by industry. Hover a site to scroll through its homepage, click to open it in a new tab, or copy the link to send to a prospect.</p>
+    <div class="total">${sites.length} live websites</div>
+  </header>
+
+  <div class="toolbar">
     <div class="trow trow-top">
       <div class="search"><input id="q" type="search" placeholder="Search client or domain" aria-label="Search sites"></div>
-      <span class="shown" id="shown" style="margin-left:auto"></span>
+      <span class="shown" id="shown"></span>
     </div>
     <div class="trow">
       <span class="lbl">Industry</span>
@@ -142,72 +204,68 @@ const html = `<title>Sparo Studios Website Portfolio</title>
       <div class="chips" id="platchips">${platChips}</div>
     </div>
   </div>
+
+  <main>
+    ${sections}
+    <p class="empty" id="empty">No sites match. Clear the search or pick another industry.</p>
+  </main>
+  <footer>Sparo Studios internal, for the new business team. Last updated ${updated}.</footer>
 </div>
-<main>
-  ${sections}
-  <p class="empty" id="empty">No sites match. Clear the search or pick another category.</p>
-</main>
-<footer>Sparo Studios internal, for the new business team. Source of truth for launches: Notion Client Projects. Last updated 15 July 2026.</footer>
 <script>
   const q = document.getElementById('q');
-  const chipsEl = document.getElementById('chips');
   const shown = document.getElementById('shown');
   const empty = document.getElementById('empty');
   const total = document.querySelectorAll('.card').length;
-  let activeCat = 'All';
-  let activePlat = 'All platforms';
+  let activeCat = 'All', activePlat = 'All platforms';
 
   function apply(){
     const term = q.value.trim().toLowerCase();
     let visible = 0;
     document.querySelectorAll('section.cat').forEach(sec => {
       const inCat = activeCat === 'All' || sec.dataset.cat === activeCat;
-      let secVisible = 0;
+      let n = 0;
       sec.querySelectorAll('.card').forEach(card => {
         const inPlat = activePlat === 'All platforms' || card.dataset.platform.split(' + ').includes(activePlat);
         const hit = inCat && inPlat && (!term || card.dataset.name.includes(term) || card.dataset.domain.includes(term) || card.dataset.platform.toLowerCase().includes(term));
         card.style.display = hit ? '' : 'none';
-        if (hit) secVisible++;
+        if (hit) n++;
       });
-      sec.style.display = secVisible ? '' : 'none';
-      visible += secVisible;
+      sec.style.display = n ? '' : 'none';
+      visible += n;
     });
     shown.textContent = visible + ' of ' + total + ' sites';
     empty.style.display = visible ? 'none' : 'block';
   }
 
-  chipsEl.addEventListener('click', e => {
-    const b = e.target.closest('.chip'); if (!b) return;
-    chipsEl.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-    b.classList.add('active');
-    activeCat = b.dataset.cat;
-    apply();
-  });
+  function chipGroup(id, key, set){
+    const el = document.getElementById(id);
+    el.addEventListener('click', e => {
+      const b = e.target.closest('.chip'); if (!b) return;
+      el.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      b.classList.add('active');
+      set(b.dataset[key]);
+      apply();
+    });
+  }
+  chipGroup('chips', 'cat', v => activeCat = v);
+  chipGroup('platchips', 'plat', v => activePlat = v);
   q.addEventListener('input', apply);
 
-  const platEl = document.getElementById('platchips');
-  platEl.addEventListener('click', e => {
-    const b = e.target.closest('.chip'); if (!b) return;
-    platEl.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-    b.classList.add('active');
-    activePlat = b.dataset.plat;
-    apply();
-  });
-
   document.querySelectorAll('.copy').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault(); e.stopPropagation();
+    btn.addEventListener('click', () => {
       navigator.clipboard.writeText(btn.dataset.url).then(() => {
-        const old = btn.textContent;
         btn.textContent = 'Copied';
-        setTimeout(() => { btn.textContent = old; }, 1400);
+        setTimeout(() => { btn.textContent = 'Copy link'; }, 1400);
       });
     });
   });
   apply();
 </script>
+</body>
+</html>
 `;
 
-fs.writeFileSync(path.join(DIR, 'gallery.html'), html);
-console.log('gallery.html written:', (html.length / 1024 / 1024).toFixed(2) + ' MB');
-if (missing.length) console.log('missing thumbs:', missing.join(', '));
+fs.writeFileSync(path.join(ROOT, 'index.html'), html);
+const imgBytes = fs.readdirSync(IMG).reduce((n, f) => n + fs.statSync(path.join(IMG, f)).size, 0);
+console.log(`index.html written (${(html.length / 1024).toFixed(0)} KB), images ${(imgBytes / 1024 / 1024).toFixed(1)} MB, ${sites.length} sites`);
+if (missing.length) console.log('missing previews:', missing.join(', '));
